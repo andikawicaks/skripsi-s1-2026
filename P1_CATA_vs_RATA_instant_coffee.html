@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sensory Practicum">
+<meta name="author" content="AWP">
 
 <title>1&nbsp; Project 1 — CATA vs.&nbsp;RATA on instant coffee – Guideline Skripsi S1</title>
 <style>
@@ -211,8 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#similarity-of-the-product-maps-rv-coefficient" id="toc-similarity-of-the-product-maps-rv-coefficient" class="nav-link" data-scroll-target="#similarity-of-the-product-maps-rv-coefficient"><span class="header-section-number">8.6.1</span> Similarity of the product maps: RV coefficient</a></li>
   <li><a href="#discrimination-how-many-product-pairs-does-each-method-separate" id="toc-discrimination-how-many-product-pairs-does-each-method-separate" class="nav-link" data-scroll-target="#discrimination-how-many-product-pairs-does-each-method-separate"><span class="header-section-number">8.6.2</span> Discrimination: how many product pairs does each method separate?</a></li>
-  <li><a href="#completion-time" id="toc-completion-time" class="nav-link" data-scroll-target="#completion-time"><span class="header-section-number">8.6.3</span> Completion time</a></li>
-  <li><a href="#summary-table-for-the-poster" id="toc-summary-table-for-the-poster" class="nav-link" data-scroll-target="#summary-table-for-the-poster"><span class="header-section-number">8.6.4</span> Summary table for the poster</a></li>
+  <li><a href="#summary-table-for-the-poster" id="toc-summary-table-for-the-poster" class="nav-link" data-scroll-target="#summary-table-for-the-poster"><span class="header-section-number">8.6.3</span> Summary table for the poster</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#interpretation" id="toc-interpretation" class="nav-link" data-scroll-target="#interpretation"><span class="header-section-number">9</span> Interpretation</a></li>
@@ -235,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Penulis</div>
     <div class="quarto-title-meta-contents">
-             <p>Sensory Practicum </p>
+             <p>AWP </p>
           </div>
   </div>
     
@@ -265,12 +264,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="research-question" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Research question</h1>
-<p><strong>Does adding intensity ratings (RATA) improve product discrimination enough to justify the extra panelist effort compared with plain CATA?</strong></p>
+<p><strong>Does adding intensity ratings (RATA) improve product discrimination compared with plain CATA?</strong></p>
 <p>Sub-questions that each group must answer:</p>
 <ol type="1">
 <li>Do CATA and RATA produce a similar sensory map of the products? (RV coefficient)</li>
 <li>Which method discriminates more attributes / more product pairs?</li>
-<li>Which method takes longer to complete?</li>
 </ol>
 <p><strong>Design.</strong> Between-subjects: two independent groups of untrained consumers. Group A uses CATA, Group B uses RATA. 8 instant coffees, 12 attributes, ~50 consumers per method. Samples are coded with 3-digit random codes and presented in a balanced order (Williams design) on a printed order sheet.</p>
 </section>
@@ -393,22 +391,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tbody>
 </table>
 <p>Attribute list (both forms): Bitter, Sweet, Milky, Roasted, Burnt, Caramel, Chocolate, Sour, Watery, Strong, Creamy, Artificial.</p>
-<p><strong>Timing.</strong> Google Forms records a <em>Timestamp</em> for each response. Time per panelist = last timestamp − first timestamp (an approximation, but fine for comparing methods).</p>
 </section>
 <section id="what-the-exported-.xlsx-looks-like" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> What the exported .xlsx looks like</h1>
+<p><em>Google Forms always adds a <strong>Timestamp</strong> column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).</em></p>
 <p>In Google Forms: <em>Responses → Link to Sheets → File → Download → Microsoft Excel (.xlsx)</em>.</p>
 <p><strong>CATA export</strong> — checkbox answers arrive as one comma-separated cell:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
-<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Sample code</th>
 <th>Which of these terms describe this sample?</th>
@@ -416,13 +412,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-02 09:01:12</td>
 <td>1</td>
 <td>482</td>
 <td>Bitter, Roasted, Strong</td>
 </tr>
 <tr class="even">
-<td>2026-11-02 09:02:05</td>
 <td>1</td>
 <td>735</td>
 <td>Sweet, Milky, Creamy</td>
@@ -432,16 +426,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>RATA export</strong> — a grid becomes one column per row of the grid, named <code>Question [Attribute]</code>:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Sample code</th>
 <th>Rate the intensity… [Bitter]</th>
@@ -451,7 +443,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-02 09:01:40</td>
 <td>101</td>
 <td>482</td>
 <td>3 High</td>
@@ -484,45 +475,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">Coffee_H =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">1</span>))   <span class="co"># near-duplicate of C (discrimination test)</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(true_prof) <span class="ot">&lt;-</span> attrs</span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2026-11-02 09:00:00"</span>, <span class="at">tz =</span> <span class="st">"Asia/Jakarta"</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- CATA: 50 panelists ----</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>cata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> start <span class="sc">+</span> (p <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">900</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (prod <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">names</span>(codes))) {</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    latent  <span class="ot">&lt;-</span> true_prof[prod, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(attrs), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    checked <span class="ot">&lt;-</span> attrs[latent <span class="sc">&gt;</span> <span class="fl">1.6</span>]</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="dv">80</span>))               <span class="co"># ~1 min per sample</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    cata_rows[[<span class="fu">length</span>(cata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> codes[[prod]],</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(checked, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>cata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(cata_rows)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- RATA: 50 different panelists ----</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>lab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Not applicable"</span>, <span class="st">"1 Low"</span>, <span class="st">"2 Medium"</span>, <span class="st">"3 High"</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>rata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">150</span>) {</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> start <span class="sc">+</span> (p <span class="sc">-</span> <span class="dv">101</span>) <span class="sc">*</span> <span class="dv">900</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (prod <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">names</span>(codes))) {</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    latent <span class="ot">&lt;-</span> true_prof[prod, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(attrs), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    score  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(latent <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="fu">pmin</span>(<span class="dv">3</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, <span class="fu">round</span>(latent <span class="sc">-</span> <span class="fl">0.4</span>))), <span class="dv">0</span>)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">70</span>, <span class="dv">130</span>))              <span class="co"># RATA is slower</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                      <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> codes[[prod]], <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (a <span class="cf">in</span> <span class="fu">seq_along</span>(attrs))</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>      row[[<span class="fu">paste0</span>(<span class="st">"Rate the intensity of each term that applies ["</span>, attrs[a], <span class="st">"]"</span>)]] <span class="ot">&lt;-</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>        lab[score[a] <span class="sc">+</span> <span class="dv">1</span>]</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    rata_rows[[<span class="fu">length</span>(rata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> row</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>rata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rata_rows)</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(cata_raw, <span class="st">"P1_CATA_responses.xlsx"</span>)</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(rata_raw, <span class="st">"P1_RATA_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- CATA: 50 panelists ----</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>cata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>) {</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (prod <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">names</span>(codes))) {</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    latent  <span class="ot">&lt;-</span> true_prof[prod, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(attrs), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    checked <span class="ot">&lt;-</span> attrs[latent <span class="sc">&gt;</span> <span class="fl">1.6</span>]</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    cata_rows[[<span class="fu">length</span>(cata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> codes[[prod]],</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(checked, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>cata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(cata_rows)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- RATA: 50 different panelists ----</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>lab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Not applicable"</span>, <span class="st">"1 Low"</span>, <span class="st">"2 Medium"</span>, <span class="st">"3 High"</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>rata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">150</span>) {</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (prod <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">names</span>(codes))) {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    latent <span class="ot">&lt;-</span> true_prof[prod, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(attrs), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    score  <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(latent <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="fu">pmin</span>(<span class="dv">3</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, <span class="fu">round</span>(latent <span class="sc">-</span> <span class="fl">0.4</span>))), <span class="dv">0</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> codes[[prod]], <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (a <span class="cf">in</span> <span class="fu">seq_along</span>(attrs))</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>      row[[<span class="fu">paste0</span>(<span class="st">"Rate the intensity of each term that applies ["</span>, attrs[a], <span class="st">"]"</span>)]] <span class="ot">&lt;-</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        lab[score[a] <span class="sc">+</span> <span class="dv">1</span>]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    rata_rows[[<span class="fu">length</span>(rata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> row</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>rata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rata_rows)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(cata_raw, <span class="st">"P1_CATA_responses.xlsx"</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(rata_raw, <span class="st">"P1_RATA_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-and-reshape" class="level1" data-number="7">
@@ -535,7 +519,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Timestamp"],"name":[1],"type":["dttm"],"align":["right"]},{"label":["Panelist ID"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Sample code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Which of these terms describe this sample?"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"2026-11-02 09:00:41","2":"1","3":"356","4":"Sweet, Milky, Chocolate, Creamy"},{"1":"2026-11-02 09:01:59","2":"1","3":"482","4":"Bitter, Roasted, Burnt, Chocolate, Strong"},{"1":"2026-11-02 09:03:17","2":"1","3":"127","4":"Sweet, Sour, Strong, Creamy"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Panelist ID"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sample code"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Which of these terms describe this sample?"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"356","3":"Sweet, Milky, Chocolate, Creamy"},{"1":"1","2":"482","3":"Roasted, Burnt, Strong"},{"1":"1","2":"127","3":"Milky, Roasted, Sour, Watery, Strong"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -555,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["panelist"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sample"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Bitter"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sweet"],"name":[4],"type":["int"],"align":["right"]},{"label":["Milky"],"name":[5],"type":["int"],"align":["right"]},{"label":["Roasted"],"name":[6],"type":["int"],"align":["right"]},{"label":["Burnt"],"name":[7],"type":["int"],"align":["right"]},{"label":["Caramel"],"name":[8],"type":["int"],"align":["right"]},{"label":["Chocolate"],"name":[9],"type":["int"],"align":["right"]},{"label":["Sour"],"name":[10],"type":["int"],"align":["right"]},{"label":["Watery"],"name":[11],"type":["int"],"align":["right"]},{"label":["Strong"],"name":[12],"type":["int"],"align":["right"]},{"label":["Creamy"],"name":[13],"type":["int"],"align":["right"]},{"label":["Artificial"],"name":[14],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"356","3":"0","4":"1","5":"1","6":"0","7":"0","8":"0","9":"1","10":"0","11":"0","12":"0","13":"1","14":"0"},{"1":"1","2":"482","3":"1","4":"0","5":"0","6":"1","7":"1","8":"0","9":"1","10":"0","11":"0","12":"1","13":"0","14":"0"},{"1":"1","2":"127","3":"0","4":"1","5":"0","6":"0","7":"0","8":"0","9":"0","10":"1","11":"0","12":"1","13":"1","14":"0"},{"1":"1","2":"573","3":"0","4":"1","5":"1","6":"1","7":"0","8":"1","9":"1","10":"0","11":"0","12":"0","13":"1","14":"0"},{"1":"1","2":"219","3":"0","4":"1","5":"1","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0","12":"0","13":"1","14":"0"},{"1":"1","2":"908","3":"1","4":"1","5":"1","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0","12":"1","13":"1","14":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["panelist"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sample"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Bitter"],"name":[3],"type":["int"],"align":["right"]},{"label":["Sweet"],"name":[4],"type":["int"],"align":["right"]},{"label":["Milky"],"name":[5],"type":["int"],"align":["right"]},{"label":["Roasted"],"name":[6],"type":["int"],"align":["right"]},{"label":["Burnt"],"name":[7],"type":["int"],"align":["right"]},{"label":["Caramel"],"name":[8],"type":["int"],"align":["right"]},{"label":["Chocolate"],"name":[9],"type":["int"],"align":["right"]},{"label":["Sour"],"name":[10],"type":["int"],"align":["right"]},{"label":["Watery"],"name":[11],"type":["int"],"align":["right"]},{"label":["Strong"],"name":[12],"type":["int"],"align":["right"]},{"label":["Creamy"],"name":[13],"type":["int"],"align":["right"]},{"label":["Artificial"],"name":[14],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"356","3":"0","4":"1","5":"1","6":"0","7":"0","8":"0","9":"1","10":"0","11":"0","12":"0","13":"1","14":"0"},{"1":"1","2":"482","3":"0","4":"0","5":"0","6":"1","7":"1","8":"0","9":"0","10":"0","11":"0","12":"1","13":"0","14":"0"},{"1":"1","2":"127","3":"0","4":"0","5":"1","6":"1","7":"0","8":"0","9":"0","10":"1","11":"1","12":"1","13":"0","14":"0"},{"1":"1","2":"573","3":"1","4":"1","5":"1","6":"1","7":"0","8":"1","9":"0","10":"0","11":"0","12":"0","13":"1","14":"0"},{"1":"1","2":"219","3":"0","4":"1","5":"1","6":"1","7":"0","8":"0","9":"0","10":"0","11":"0","12":"1","13":"1","14":"0"},{"1":"1","2":"908","3":"0","4":"1","5":"0","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0","12":"0","13":"0","14":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -574,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["panelist"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sample"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Bitter"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sweet"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Milky"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Roasted"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Burnt"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Caramel"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Chocolate"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Sour"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Watery"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Strong"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Creamy"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Artificial"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"101","2":"573","3":"1","4":"1","5":"3","6":"0","7":"0","8":"0","9":"1","10":"0","11":"0","12":"0","13":"3","14":"0"},{"1":"101","2":"641","3":"0","4":"3","5":"0","6":"0","7":"0","8":"0","9":"0","10":"0","11":"2","12":"0","13":"0","14":"0"},{"1":"101","2":"127","3":"0","4":"0","5":"0","6":"2","7":"0","8":"0","9":"0","10":"2","11":"0","12":"3","13":"0","14":"0"},{"1":"101","2":"735","3":"2","4":"0","5":"0","6":"2","7":"2","8":"0","9":"0","10":"0","11":"0","12":"2","13":"0","14":"0"},{"1":"101","2":"219","3":"0","4":"2","5":"0","6":"0","7":"0","8":"3","9":"0","10":"0","11":"0","12":"2","13":"3","14":"0"},{"1":"101","2":"356","3":"2","4":"0","5":"0","6":"0","7":"0","8":"2","9":"2","10":"0","11":"0","12":"2","13":"2","14":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["panelist"],"name":[1],"type":["fct"],"align":["left"]},{"label":["sample"],"name":[2],"type":["fct"],"align":["left"]},{"label":["Bitter"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Sweet"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Milky"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Roasted"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Burnt"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Caramel"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Chocolate"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Sour"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Watery"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["Strong"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Creamy"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["Artificial"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"101","2":"641","3":"0","4":"0","5":"0","6":"0","7":"0","8":"2","9":"2","10":"0","11":"3","12":"0","13":"0","14":"0"},{"1":"101","2":"356","3":"0","4":"2","5":"2","6":"0","7":"0","8":"0","9":"2","10":"0","11":"2","12":"0","13":"2","14":"2"},{"1":"101","2":"573","3":"2","4":"3","5":"3","6":"1","7":"0","8":"2","9":"1","10":"0","11":"0","12":"0","13":"2","14":"0"},{"1":"101","2":"219","3":"1","4":"2","5":"2","6":"0","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"3","14":"0"},{"1":"101","2":"908","3":"2","4":"2","5":"1","6":"0","7":"0","8":"0","9":"1","10":"0","11":"0","12":"0","13":"2","14":"2"},{"1":"101","2":"482","3":"3","4":"0","5":"0","6":"2","7":"0","8":"0","9":"0","10":"0","11":"0","12":"3","13":"0","14":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -591,23 +575,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>cata_freq</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Bitter Sweet Milky Roasted Burnt Caramel Chocolate Sour Watery Strong
-127     35    14    12      36    16       2         4   33     16     29
-219      9    47    50       9     0      35         9    1      2     15
-356     12    33    34      12     2      12        48    0     19     10
-482     48     0     0      48    38       3        10    2      3     50
-573     14    50    49       8     0      35        18    0      1     12
-641      9    38    34      10     2      10        12    1     48      1
-735     30     7     0      45    10       1        13    9      0     32
-908     11    46    34       9     1      49         9    2      1     13
+127     36     8     7      38    20       1         1   37     11     33
+219     14    50    45      14     0      33        14    2      2     10
+356     16    36    27      14     1       9        48    2      8      4
+482     46     1     0      49    36       1        12   16      1     48
+573     14    49    49      10     2      37         7    2      2     15
+641     13    36    38       9     0      14         8    0     44      0
+735     36     6     0      49     4       1         7   13      1     39
+908     11    47    28      13     0      49        17    1      2     15
     Creamy Artificial
-127     15          0
-219     49          5
-356     25         32
-482      1          0
-573     49          6
-641     12         10
-735      1          1
-908     32         28</code></pre>
+127     13          0
+219     48          8
+356     34         28
+482      1          1
+573     49          9
+641     10          9
+735      0          1
+908     37         30</code></pre>
 </div>
 </div>
 </section>
@@ -629,7 +613,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Q"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Bitter","2":"118.2050","3":"7","4":"0","5":"TRUE","_rn_":"Bitter"},{"1":"Sweet","2":"207.9684","3":"7","4":"0","5":"TRUE","_rn_":"Sweet"},{"1":"Milky","2":"209.6772","3":"7","4":"0","5":"TRUE","_rn_":"Milky"},{"1":"Roasted","2":"170.1771","3":"7","4":"0","5":"TRUE","_rn_":"Roasted"},{"1":"Burnt","2":"160.7021","3":"7","4":"0","5":"TRUE","_rn_":"Burnt"},{"1":"Caramel","2":"190.7228","3":"7","4":"0","5":"TRUE","_rn_":"Caramel"},{"1":"Chocolate","2":"120.1309","3":"7","4":"0","5":"TRUE","_rn_":"Chocolate"},{"1":"Sour","2":"159.0828","3":"7","4":"0","5":"TRUE","_rn_":"Sour"},{"1":"Watery","2":"202.4737","3":"7","4":"0","5":"TRUE","_rn_":"Watery"},{"1":"Strong","2":"134.0500","3":"7","4":"0","5":"TRUE","_rn_":"Strong"},{"1":"Creamy","2":"194.9462","3":"7","4":"0","5":"TRUE","_rn_":"Creamy"},{"1":"Artificial","2":"127.0120","3":"7","4":"0","5":"TRUE","_rn_":"Artificial"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Q"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Bitter","2":"102.7833","3":"7","4":"0","5":"TRUE","_rn_":"Bitter"},{"1":"Sweet","2":"226.1647","3":"7","4":"0","5":"TRUE","_rn_":"Sweet"},{"1":"Milky","2":"204.7453","3":"7","4":"0","5":"TRUE","_rn_":"Milky"},{"1":"Roasted","2":"161.4987","3":"7","4":"0","5":"TRUE","_rn_":"Roasted"},{"1":"Burnt","2":"171.3509","3":"7","4":"0","5":"TRUE","_rn_":"Burnt"},{"1":"Caramel","2":"201.1574","3":"7","4":"0","5":"TRUE","_rn_":"Caramel"},{"1":"Chocolate","2":"137.3400","3":"7","4":"0","5":"TRUE","_rn_":"Chocolate"},{"1":"Sour","2":"144.8730","3":"7","4":"0","5":"TRUE","_rn_":"Sour"},{"1":"Watery","2":"192.8444","3":"7","4":"0","5":"TRUE","_rn_":"Watery"},{"1":"Strong","2":"162.4767","3":"7","4":"0","5":"TRUE","_rn_":"Strong"},{"1":"Creamy","2":"214.7905","3":"7","4":"0","5":"TRUE","_rn_":"Creamy"},{"1":"Artificial","2":"112.3984","3":"7","4":"0","5":"TRUE","_rn_":"Artificial"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -644,9 +628,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ca_cata<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ], <span class="dv">1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      eigenvalue percentage of variance cumulative percentage of variance
-dim 1        0.5                   58.9                              58.9
-dim 2        0.1                   18.4                              77.4
-dim 3        0.1                   11.1                              88.4</code></pre>
+dim 1        0.5                   62.2                              62.2
+dim 2        0.1                   17.6                              79.8
+dim 3        0.1                    9.7                              89.5</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ca_rows <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ca_cata<span class="sc">$</span>row<span class="sc">$</span>coord[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">label =</span> <span class="fu">rownames</span>(cata_freq), <span class="at">type =</span> <span class="st">"Sample"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ca_cols <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(ca_cata<span class="sc">$</span>col<span class="sc">$</span>coord[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">label =</span> sig_cata,           <span class="at">type =</span> <span class="st">"Attribute"</span>)</span>
@@ -684,7 +668,7 @@ dim 3        0.1                   11.1                              88.4</code>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["F"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pairs_diff"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Bitter","2":"41.0822","3":"0","4":"17","5":"TRUE","_rn_":"Bitter"},{"1":"Sweet","2":"71.1935","3":"0","4":"21","5":"TRUE","_rn_":"Sweet"},{"1":"Milky","2":"79.2686","3":"0","4":"21","5":"TRUE","_rn_":"Milky"},{"1":"Roasted","2":"84.6248","3":"0","4":"17","5":"TRUE","_rn_":"Roasted"},{"1":"Burnt","2":"36.9884","3":"0","4":"12","5":"TRUE","_rn_":"Burnt"},{"1":"Caramel","2":"93.2821","3":"0","4":"17","5":"TRUE","_rn_":"Caramel"},{"1":"Chocolate","2":"78.8102","3":"0","4":"9","5":"TRUE","_rn_":"Chocolate"},{"1":"Sour","2":"39.6952","3":"0","4":"12","5":"TRUE","_rn_":"Sour"},{"1":"Watery","2":"159.8855","3":"0","4":"17","5":"TRUE","_rn_":"Watery"},{"1":"Strong","2":"50.9538","3":"0","4":"17","5":"TRUE","_rn_":"Strong"},{"1":"Creamy","2":"84.3188","3":"0","4":"20","5":"TRUE","_rn_":"Creamy"},{"1":"Artificial","2":"35.7833","3":"0","4":"14","5":"TRUE","_rn_":"Artificial"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["F"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["pairs_diff"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[5],"type":["lgl"],"align":["right"]}],"data":[{"1":"Bitter","2":"44.5458","3":"0","4":"17","5":"TRUE","_rn_":"Bitter"},{"1":"Sweet","2":"85.3434","3":"0","4":"22","5":"TRUE","_rn_":"Sweet"},{"1":"Milky","2":"75.1066","3":"0","4":"21","5":"TRUE","_rn_":"Milky"},{"1":"Roasted","2":"82.5539","3":"0","4":"17","5":"TRUE","_rn_":"Roasted"},{"1":"Burnt","2":"52.9929","3":"0","4":"12","5":"TRUE","_rn_":"Burnt"},{"1":"Caramel","2":"84.2967","3":"0","4":"19","5":"TRUE","_rn_":"Caramel"},{"1":"Chocolate","2":"50.2359","3":"0","4":"9","5":"TRUE","_rn_":"Chocolate"},{"1":"Sour","2":"37.1672","3":"0","4":"7","5":"TRUE","_rn_":"Sour"},{"1":"Watery","2":"155.7550","3":"0","4":"15","5":"TRUE","_rn_":"Watery"},{"1":"Strong","2":"50.9753","3":"0","4":"17","5":"TRUE","_rn_":"Strong"},{"1":"Creamy","2":"72.0108","3":"0","4":"22","5":"TRUE","_rn_":"Creamy"},{"1":"Artificial","2":"32.3858","3":"0","4":"12","5":"TRUE","_rn_":"Artificial"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -701,9 +685,9 @@ dim 3        0.1                   11.1                              88.4</code>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(pca_rata<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ], <span class="dv">1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       eigenvalue percentage of variance cumulative percentage of variance
-comp 1        7.4                   61.8                              61.8
-comp 2        1.7                   14.0                              75.7
-comp 3        1.4                   11.7                              87.5</code></pre>
+comp 1        7.0                   58.4                              58.4
+comp 2        1.7                   14.5                              72.9
+comp 3        1.5                   12.7                              85.7</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pca_rata, <span class="at">choix =</span> <span class="st">"ind"</span>, <span class="at">title =</span> <span class="st">"RATA - PCA, products"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -735,13 +719,13 @@ comp 3        1.4                   11.7                              87.5</code
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>rv[<span class="fu">c</span>(<span class="st">"rv"</span>, <span class="st">"rvstd"</span>, <span class="st">"p.value"</span>)]</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$rv
-[1] 0.9732332
+[1] 0.9191706
 
 $rvstd
-[1] 4.642742
+[1] 4.36977
 
 $p.value
-[1] 0.001897516</code></pre>
+[1] 0.002798794</code></pre>
 </div>
 </div>
 </section>
@@ -766,77 +750,33 @@ $p.value
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["CATA_pairs"],"name":[2],"type":["int"],"align":["right"]},{"label":["RATA_pairs"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bitter","2":"17","3":"17"},{"1":"Sweet","2":"23","3":"21"},{"1":"Milky","2":"23","3":"21"},{"1":"Roasted","2":"17","3":"17"},{"1":"Burnt","2":"17","3":"12"},{"1":"Caramel","2":"22","3":"17"},{"1":"Chocolate","2":"10","3":"9"},{"1":"Sour","2":"12","3":"12"},{"1":"Watery","2":"17","3":"17"},{"1":"Strong","2":"21","3":"17"},{"1":"Creamy","2":"23","3":"20"},{"1":"Artificial","2":"17","3":"14"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["attribute"],"name":[1],"type":["chr"],"align":["left"]},{"label":["CATA_pairs"],"name":[2],"type":["int"],"align":["right"]},{"label":["RATA_pairs"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Bitter","2":"17","3":"17"},{"1":"Sweet","2":"22","3":"22"},{"1":"Milky","2":"23","3":"21"},{"1":"Roasted","2":"17","3":"17"},{"1":"Burnt","2":"13","3":"12"},{"1":"Caramel","2":"23","3":"19"},{"1":"Chocolate","2":"13","3":"9"},{"1":"Sour","2":"17","3":"7"},{"1":"Watery","2":"14","3":"15"},{"1":"Strong","2":"22","3":"17"},{"1":"Creamy","2":"24","3":"22"},{"1":"Artificial","2":"21","3":"12"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
 </div>
 <p>Look in particular at the near-duplicate pair <strong>219</strong> vs.&nbsp;<strong>573</strong>: neither method should separate them strongly. If one method does, it may be picking up noise.</p>
 </section>
-<section id="completion-time" class="level3" data-number="8.6.3">
-<h3 data-number="8.6.3" class="anchored" data-anchor-id="completion-time"><span class="header-section-number">8.6.3</span> Completion time</h3>
+<section id="summary-table-for-the-poster" class="level3" data-number="8.6.3">
+<h3 data-number="8.6.3" class="anchored" data-anchor-id="summary-table-for-the-poster"><span class="header-section-number">8.6.3</span> Summary table for the poster</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dur <span class="ot">&lt;-</span> <span class="cf">function</span>(df) df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">minutes =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">max</span>(Timestamp), <span class="fu">min</span>(Timestamp), <span class="at">units =</span> <span class="st">"mins"</span>)))</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>timing <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">mutate</span>(<span class="fu">dur</span>(cata_raw), <span class="at">method =</span> <span class="st">"CATA"</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">mutate</span>(<span class="fu">dur</span>(rata_raw), <span class="at">method =</span> <span class="st">"RATA"</span>))</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>timing <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(method) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">mean_min =</span> <span class="fu">mean</span>(minutes), <span class="at">sd =</span> <span class="fu">sd</span>(minutes))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Criterion =</span> <span class="fu">c</span>(<span class="st">"Discriminating attributes (p &lt; 0.05)"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Variance explained, Dim 1 + 2 (%)"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Discriminated product pairs (sum over attributes)"</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"RV between maps (p-value)"</span>),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">CATA =</span> <span class="fu">c</span>(<span class="fu">length</span>(sig_cata),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(ca_cata<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(cata_pairs),</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sprintf</span>(<span class="st">"%.2f (p = %.3f)"</span>, rv<span class="sc">$</span>rv, rv<span class="sc">$</span>p.value)),</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">RATA =</span> <span class="fu">c</span>(<span class="fu">length</span>(sig_rata),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(pca_rata<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(rata_aov<span class="sc">$</span>pairs_diff),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>           <span class="st">""</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["method"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean_min"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"CATA","2":"7.034333","3":"0.5633799"},{"1":"RATA","2":"11.635000","3":"0.7893010"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(minutes <span class="sc">~</span> method, <span class="at">data =</span> timing)   <span class="co"># independent groups (between-subjects design)</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Welch Two Sample t-test
-
-data:  minutes by method
-t = -33.547, df = 88.639, p-value &lt; 2.2e-16
-alternative hypothesis: true difference in means between group CATA and group RATA is not equal to 0
-95 percent confidence interval:
- -4.873180 -4.328154
-sample estimates:
-mean in group CATA mean in group RATA 
-          7.034333          11.635000 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(timing, <span class="fu">aes</span>(method, minutes)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">width =</span> .<span class="dv">1</span>, <span class="at">alpha =</span> .<span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Time to evaluate all 8 samples"</span>, <span class="at">y =</span> <span class="st">"Minutes (first to last submission)"</span>) <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="P1_CATA_vs_RATA_instant_coffee_files/figure-html/timing-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="summary-table-for-the-poster" class="level3" data-number="8.6.4">
-<h3 data-number="8.6.4" class="anchored" data-anchor-id="summary-table-for-the-poster"><span class="header-section-number">8.6.4</span> Summary table for the poster</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Criterion =</span> <span class="fu">c</span>(<span class="st">"Discriminating attributes (p &lt; 0.05)"</span>,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Variance explained, Dim 1 + 2 (%)"</span>,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Discriminated product pairs (sum over attributes)"</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Mean completion time (min)"</span>,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"RV between maps (p-value)"</span>),</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">CATA =</span> <span class="fu">c</span>(<span class="fu">length</span>(sig_cata),</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(ca_cata<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(cata_pairs),</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(<span class="fu">mean</span>(timing<span class="sc">$</span>minutes[timing<span class="sc">$</span>method <span class="sc">==</span> <span class="st">"CATA"</span>]), <span class="dv">1</span>),</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sprintf</span>(<span class="st">"%.2f (p = %.3f)"</span>, rv<span class="sc">$</span>rv, rv<span class="sc">$</span>p.value)),</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">RATA =</span> <span class="fu">c</span>(<span class="fu">length</span>(sig_rata),</span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(pca_rata<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sum</span>(rata_aov<span class="sc">$</span>pairs_diff),</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>           <span class="fu">round</span>(<span class="fu">mean</span>(timing<span class="sc">$</span>minutes[timing<span class="sc">$</span>method <span class="sc">==</span> <span class="st">"RATA"</span>]), <span class="dv">1</span>),</span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>           <span class="st">""</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div data-pagedtable="false">
-  <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[2],"type":["chr"],"align":["left"]},{"label":["RATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Discriminating attributes (p < 0.05)","2":"12","3":"12"},{"1":"Variance explained, Dim 1 + 2 (%)","2":"77.4","3":"75.7"},{"1":"Discriminated product pairs (sum over attributes)","2":"219","3":"194"},{"1":"Mean completion time (min)","2":"7","3":"11.6"},{"1":"RV between maps (p-value)","2":"0.97 (p = 0.002)","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[2],"type":["chr"],"align":["left"]},{"label":["RATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Discriminating attributes (p < 0.05)","2":"12","3":"12"},{"1":"Variance explained, Dim 1 + 2 (%)","2":"79.8","3":"72.9"},{"1":"Discriminated product pairs (sum over attributes)","2":"226","3":"190"},{"1":"RV between maps (p-value)","2":"0.92 (p = 0.003)","3":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -849,21 +789,14 @@ mean in group CATA mean in group RATA
 <p><strong>With the dummy data</strong> (your numbers will differ):</p>
 <ul>
 <li>CATA found 12 of 12 attributes discriminating; RATA found 12. Attributes that are significant only in RATA are the ones where products differ in <em>how much</em>, not <em>whether</em>, the attribute is present (e.g., two black coffees that are both bitter, but one more so).</li>
-<li>The RV coefficient between the CATA and RATA maps is 0.97 (p = 0.0019). A high, significant RV means both methods tell the <strong>same story</strong> about how the coffees relate to each other.</li>
-<li>RATA took longer on average (11.6 vs 7 min).</li>
+<li>The RV coefficient between the CATA and RATA maps is 0.92 (p = 0.0028). A high, significant RV means both methods tell the <strong>same story</strong> about how the coffees relate to each other.</li>
 </ul>
-<p><strong>How to write the conclusion.</strong> Weigh the gain against the cost:</p>
+<p><strong>How to write the conclusion.</strong> Weigh the extra information against the more demanding task:</p>
 <ul>
-<li>If RV is high <strong>and</strong> RATA adds few extra discriminating attributes or pairs, CATA is sufficient and quicker.</li>
-<li>If RATA separates products that CATA cannot (e.g., the two black coffees), the extra time is justified when the product set contains products that are similar in composition.</li>
+<li>If RV is high <strong>and</strong> RATA adds few extra discriminating attributes or pairs, CATA is sufficient and simpler for consumers.</li>
+<li>If RATA separates products that CATA cannot (e.g., the two black coffees), the more demanding task is worth it when the product set contains products that are similar in composition.</li>
 <li>Discuss the design limitation: between-subjects means panel differences are confounded with method differences. A within-subjects replication (same panelists, both methods, counterbalanced) would remove this.</li>
 </ul>
-<p><strong>Questions to discuss in class</strong></p>
-<ol type="1">
-<li>Why is <em>Not applicable</em> scored as 0 in RATA rather than treated as missing? What happens to the analysis if you treat it as missing instead?</li>
-<li>Why do we run CA on CATA counts but PCA on RATA means?</li>
-<li>Would the conclusion change with 25 panelists instead of 50? (Try it: subsample the data.)</li>
-</ol>
 
 
 </section>

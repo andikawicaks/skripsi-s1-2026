@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sensory Practicum">
+<meta name="author" content="AWP">
 
 <title>4&nbsp; Project 4 — JAR vs.&nbsp;CATA with an ideal product for iced tea reformulation – Guideline Skripsi S1</title>
 <style>
@@ -235,7 +235,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Penulis</div>
     <div class="quarto-title-meta-contents">
-             <p>Sensory Practicum </p>
+             <p>AWP </p>
           </div>
   </div>
     
@@ -423,20 +423,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-the-exported-.xlsx-looks-like" class="level1" data-number="8">
 <h1 data-number="8"><span class="header-section-number">8</span> What the exported .xlsx looks like</h1>
+<p><em>Google Forms always adds a <strong>Timestamp</strong> column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).</em></p>
 <p><strong>Form A</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Sample code</th>
 <th>How much do you like…?</th>
@@ -447,7 +446,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-05 09:03:12</td>
 <td>1</td>
 <td>274</td>
 <td>6</td>
@@ -460,15 +458,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Form B</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Sample code</th>
 <th>How much do you like…?</th>
@@ -477,14 +473,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-05 09:03:40</td>
 <td>101</td>
 <td>274</td>
 <td>7</td>
 <td>Sweet, Refreshing, Fresh tea aroma</td>
 </tr>
 <tr class="even">
-<td>2026-11-05 09:12:02</td>
 <td>101</td>
 <td>IDEAL</td>
 <td><em>(blank)</em></td>
@@ -506,67 +500,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="st">"Refreshing"</span>,<span class="st">"Floral"</span>,<span class="st">"Smoky"</span>,<span class="st">"Sour"</span>,<span class="st">"Lingering aftertaste"</span>,<span class="st">"Fresh tea aroma"</span>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>jar_lab <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"1 Much too low"</span>,<span class="st">"2 Somewhat too low"</span>,<span class="st">"3 Just about right"</span>,</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>             <span class="st">"4 Somewhat too high"</span>,<span class="st">"5 Much too high"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2026-11-05 09:00:00"</span>, <span class="at">tz =</span> <span class="st">"Asia/Jakarta"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>consumer <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">list</span>(<span class="at">sug =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">2.0</span>, <span class="fl">0.6</span>), <span class="at">str =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="fl">0.4</span>),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bit =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">0.6</span>, <span class="fl">0.3</span>))</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>perceive <span class="ot">&lt;-</span> <span class="cf">function</span>(pr) <span class="fu">list</span>(<span class="at">sug =</span> pr<span class="sc">$</span>sugar <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.35</span>),</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                              <span class="at">str =</span> pr<span class="sc">$</span>strength <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>                              <span class="at">bit =</span> (pr<span class="sc">$</span>strength <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>))</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>like <span class="ot">&lt;-</span> <span class="cf">function</span>(c, p) {</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fl">7.4</span> <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">abs</span>(p<span class="sc">$</span>sug <span class="sc">-</span> c<span class="sc">$</span>sug) <span class="sc">-</span> <span class="fl">1.0</span> <span class="sc">*</span> <span class="fu">abs</span>(p<span class="sc">$</span>str <span class="sc">-</span> c<span class="sc">$</span>str) <span class="sc">-</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>       <span class="fl">1.2</span> <span class="sc">*</span> <span class="fu">max</span>(<span class="dv">0</span>, p<span class="sc">$</span>bit <span class="sc">-</span> c<span class="sc">$</span>bit) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.9</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="fu">pmin</span>(<span class="dv">9</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, l)))</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>jar  <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ideal, k) <span class="fu">pmin</span>(<span class="dv">5</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, <span class="fu">round</span>(<span class="dv">3</span> <span class="sc">+</span> k <span class="sc">*</span> (x <span class="sc">-</span> ideal) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))))</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Form A: liking + JAR ----</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>rowsA <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>) {</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">consumer</span>(); t <span class="ot">&lt;-</span> start <span class="sc">+</span> i <span class="sc">*</span> <span class="dv">400</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(prods))) {</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">perceive</span>(prods[j, ]); t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">45</span>, <span class="dv">90</span>))</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    rowsA[[<span class="fu">length</span>(rowsA) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> prods<span class="sc">$</span>code[j],</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">like</span>(c, p),</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Sweetness]</span><span class="st">`</span>   <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>sug, c<span class="sc">$</span>sug, <span class="fl">1.0</span>)],</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Tea flavour]</span><span class="st">`</span> <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>str, c<span class="sc">$</span>str, <span class="fl">1.2</span>)],</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Bitterness]</span><span class="st">`</span>  <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>bit, c<span class="sc">$</span>bit, <span class="fl">1.0</span>)],</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>formA <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rowsA)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Form B: liking + CATA + ideal ----</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>rowsB <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">160</span>) {</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">consumer</span>(); t <span class="ot">&lt;-</span> start <span class="sc">+</span> (i <span class="sc">-</span> <span class="dv">100</span>) <span class="sc">*</span> <span class="dv">400</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(prods))) {</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">perceive</span>(prods[j, ]); t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="dv">80</span>))</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    L <span class="ot">&lt;-</span> <span class="fu">like</span>(c, p)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>    ticked <span class="ot">&lt;-</span> terms[<span class="fu">c</span>(p<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">1.5</span>, p<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">2.6</span>, p<span class="sc">$</span>bit <span class="sc">&gt;</span> <span class="fl">0.9</span>, p<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.6</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">5</span>,</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                      p<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.5</span>, p<span class="sc">$</span>str <span class="sc">&lt;</span> <span class="fl">1.3</span> <span class="sc">&amp;</span> p<span class="sc">$</span>sug <span class="sc">&lt;</span> <span class="fl">1.6</span>,</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                      L <span class="sc">&gt;=</span> <span class="dv">6</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">8</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">2</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>,</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">08</span>, p<span class="sc">$</span>bit <span class="sc">&gt;</span> <span class="fl">1.1</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">6</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">3</span>)]</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    rowsB[[<span class="fu">length</span>(rowsB) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> prods<span class="sc">$</span>code[j],</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> L,</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(ticked, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  ideal <span class="ot">&lt;-</span> terms[<span class="fu">c</span>(c<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">1.4</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>,</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                   c<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">03</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">9</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">35</span>,</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">3</span>)]</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>  rowsB[[<span class="fu">length</span>(rowsB) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">Timestamp =</span> t <span class="sc">+</span> <span class="dv">60</span>, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"IDEAL"</span>,</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA</span>,</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(ideal, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>formB <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rowsB)</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(formA, <span class="st">"P4_FormA_JAR_responses.xlsx"</span>)</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(formB, <span class="st">"P4_FormB_CATA_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>consumer <span class="ot">&lt;-</span> <span class="cf">function</span>() <span class="fu">list</span>(<span class="at">sug =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">2.0</span>, <span class="fl">0.6</span>), <span class="at">str =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">1.5</span>, <span class="fl">0.4</span>),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                            <span class="at">bit =</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">0.6</span>, <span class="fl">0.3</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>perceive <span class="ot">&lt;-</span> <span class="cf">function</span>(pr) <span class="fu">list</span>(<span class="at">sug =</span> pr<span class="sc">$</span>sugar <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.35</span>),</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                              <span class="at">str =</span> pr<span class="sc">$</span>strength <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.25</span>),</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>                              <span class="at">bit =</span> (pr<span class="sc">$</span>strength <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="fl">1.3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>))</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>like <span class="ot">&lt;-</span> <span class="cf">function</span>(c, p) {</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  l <span class="ot">&lt;-</span> <span class="fl">7.4</span> <span class="sc">-</span> <span class="fl">1.5</span> <span class="sc">*</span> <span class="fu">abs</span>(p<span class="sc">$</span>sug <span class="sc">-</span> c<span class="sc">$</span>sug) <span class="sc">-</span> <span class="fl">1.0</span> <span class="sc">*</span> <span class="fu">abs</span>(p<span class="sc">$</span>str <span class="sc">-</span> c<span class="sc">$</span>str) <span class="sc">-</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>       <span class="fl">1.2</span> <span class="sc">*</span> <span class="fu">max</span>(<span class="dv">0</span>, p<span class="sc">$</span>bit <span class="sc">-</span> c<span class="sc">$</span>bit) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.9</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round</span>(<span class="fu">pmin</span>(<span class="dv">9</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, l)))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>jar  <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ideal, k) <span class="fu">pmin</span>(<span class="dv">5</span>, <span class="fu">pmax</span>(<span class="dv">1</span>, <span class="fu">round</span>(<span class="dv">3</span> <span class="sc">+</span> k <span class="sc">*</span> (x <span class="sc">-</span> ideal) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))))</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Form A: liking + JAR ----</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>rowsA <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">60</span>) {</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">consumer</span>()</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(prods))) {</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">perceive</span>(prods[j, ])</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    rowsA[[<span class="fu">length</span>(rowsA) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> prods<span class="sc">$</span>code[j],</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">like</span>(c, p),</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Sweetness]</span><span class="st">`</span>   <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>sug, c<span class="sc">$</span>sug, <span class="fl">1.0</span>)],</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Tea flavour]</span><span class="st">`</span> <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>str, c<span class="sc">$</span>str, <span class="fl">1.2</span>)],</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How is the ... of this sample? [Bitterness]</span><span class="st">`</span>  <span class="ot">=</span> jar_lab[<span class="fu">jar</span>(p<span class="sc">$</span>bit, c<span class="sc">$</span>bit, <span class="fl">1.0</span>)],</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>formA <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rowsA)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Form B: liking + CATA + ideal ----</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>rowsB <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">160</span>) {</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> <span class="fu">consumer</span>()</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(prods))) {</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> <span class="fu">perceive</span>(prods[j, ])</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    L <span class="ot">&lt;-</span> <span class="fu">like</span>(c, p)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>    ticked <span class="ot">&lt;-</span> terms[<span class="fu">c</span>(p<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">1.5</span>, p<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">2.6</span>, p<span class="sc">$</span>bit <span class="sc">&gt;</span> <span class="fl">0.9</span>, p<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.6</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">5</span>,</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                      p<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.5</span>, p<span class="sc">$</span>str <span class="sc">&lt;</span> <span class="fl">1.3</span> <span class="sc">&amp;</span> p<span class="sc">$</span>sug <span class="sc">&lt;</span> <span class="fl">1.6</span>,</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                      L <span class="sc">&gt;=</span> <span class="dv">6</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">8</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">2</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>,</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">08</span>, p<span class="sc">$</span>bit <span class="sc">&gt;</span> <span class="fl">1.1</span> <span class="sc">&amp;</span> <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">6</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">3</span>)]</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    rowsB[[<span class="fu">length</span>(rowsB) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> prods<span class="sc">$</span>code[j],</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> L,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(ticked, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  ideal <span class="ot">&lt;-</span> terms[<span class="fu">c</span>(c<span class="sc">$</span>sug <span class="sc">&gt;</span> <span class="fl">1.4</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>,</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                   c<span class="sc">$</span>str <span class="sc">&gt;</span> <span class="fl">1.6</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">03</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">9</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">35</span>,</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">05</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">1</span>, <span class="fu">runif</span>(<span class="dv">1</span>) <span class="sc">&lt;</span> .<span class="dv">3</span>)]</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  rowsB[[<span class="fu">length</span>(rowsB) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> i, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"IDEAL"</span>,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">How much do you like this iced tea overall?</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">NA</span>,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(ideal, <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>formB <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(rowsB)</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(formA, <span class="st">"P4_FormA_JAR_responses.xlsx"</span>)</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(formB, <span class="st">"P4_FormB_CATA_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-and-reshape" class="level1" data-number="10">
@@ -592,7 +585,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["panelist"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["liking"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["attribute"],"name":[4],"type":["chr"],"align":["left"]},{"label":["jar"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["category"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"356","3":"5","4":"Sweetness","5":"4","6":"Too high"},{"1":"1","2":"356","3":"5","4":"Tea flavour","5":"3","6":"JAR"},{"1":"1","2":"356","3":"5","4":"Bitterness","5":"2","6":"Too low"},{"1":"1","2":"492","3":"1","4":"Sweetness","5":"1","6":"Too low"},{"1":"1","2":"492","3":"1","4":"Tea flavour","5":"4","6":"Too high"},{"1":"1","2":"492","3":"1","4":"Bitterness","5":"5","6":"Too high"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["panelist"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["liking"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["attribute"],"name":[4],"type":["chr"],"align":["left"]},{"label":["jar"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["category"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"356","3":"4","4":"Sweetness","5":"4","6":"Too high"},{"1":"1","2":"356","3":"4","4":"Tea flavour","5":"2","6":"Too low"},{"1":"1","2":"356","3":"4","4":"Bitterness","5":"1","6":"Too low"},{"1":"1","2":"492","3":"1","4":"Sweetness","5":"1","6":"Too low"},{"1":"1","2":"492","3":"1","4":"Tea flavour","5":"4","6":"Too high"},{"1":"1","2":"492","3":"1","4":"Bitterness","5":"4","6":"Too high"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -617,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["panelist"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["liking"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["term"],"name":[4],"type":["chr"],"align":["left"]},{"label":["product"],"name":[5],"type":["int"],"align":["right"]},{"label":["ideal"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"101","2":"813","3":"8","4":"Sweet","5":"1","6":"1"},{"1":"101","2":"813","3":"8","4":"Syrupy","5":"1","6":"0"},{"1":"101","2":"813","3":"8","4":"Bitter","5":"0","6":"0"},{"1":"101","2":"813","3":"8","4":"Astringent","5":"0","6":"0"},{"1":"101","2":"813","3":"8","4":"Strong tea flavour","5":"0","6":"1"},{"1":"101","2":"813","3":"8","4":"Watery","5":"0","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["panelist"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["sample"],"name":[2],"type":["chr"],"align":["left"]},{"label":["liking"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["term"],"name":[4],"type":["chr"],"align":["left"]},{"label":["product"],"name":[5],"type":["int"],"align":["right"]},{"label":["ideal"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"101","2":"356","3":"7","4":"Sweet","5":"1","6":"1"},{"1":"101","2":"356","3":"7","4":"Syrupy","5":"1","6":"0"},{"1":"101","2":"356","3":"7","4":"Bitter","5":"0","6":"0"},{"1":"101","2":"356","3":"7","4":"Astringent","5":"0","6":"0"},{"1":"101","2":"356","3":"7","4":"Strong tea flavour","5":"0","6":"0"},{"1":"101","2":"356","3":"7","4":"Watery","5":"0","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -635,7 +628,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["A (JAR)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["B (CATA)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"137","2":"4.266667","3":"4.216667"},{"1":"274","2":"4.850000","3":"5.300000"},{"1":"356","2":"5.400000","3":"5.216667"},{"1":"492","2":"3.883333","3":"4.000000"},{"1":"605","2":"4.716667","3":"5.116667"},{"1":"813","2":"5.716667","3":"6.200000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["A (JAR)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["B (CATA)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"137","2":"4.083333","3":"3.966667"},{"1":"274","2":"5.066667","3":"5.250000"},{"1":"356","2":"5.266667","3":"5.150000"},{"1":"492","2":"4.216667","3":"4.400000"},{"1":"605","2":"5.050000","3":"4.833333"},{"1":"813","2":"6.233333","3":"5.833333"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -644,17 +637,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Error: factor(panelist)
-           Df Sum Sq Mean Sq F value Pr(&gt;F)  
-group       1    7.4   7.401   3.713 0.0564 .
-Residuals 118  235.2   1.993                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+           Df Sum Sq Mean Sq F value Pr(&gt;F)
+group       1   1.17   1.168    0.69  0.408
+Residuals 118 199.89   1.694               
 
 Error: Within
               Df Sum Sq Mean Sq F value Pr(&gt;F)    
-sample         5  320.3   64.06  37.059 &lt;2e-16 ***
-sample:group   5   12.0    2.39   1.385  0.228    
-Residuals    590 1019.9    1.73                   
+sample         5  306.1   61.23  32.143 &lt;2e-16 ***
+sample:group   5    7.9    1.57   0.827  0.531    
+Residuals    590 1123.8    1.90                   
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
@@ -718,22 +709,22 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">actionable =</span> pct <span class="sc">&gt;=</span> <span class="dv">20</span> <span class="sc">&amp;</span> mean_drop <span class="sc">&gt;=</span> <span class="dv">1</span> <span class="sc">&amp;</span> n <span class="sc">&gt;=</span> <span class="dv">5</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>penalty <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(weighted_penalty)) <span class="sc">%&gt;%</span> <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">12</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 31 × 8
+<pre><code># A tibble: 34 × 8
    sample attribute   category   pct     n mean_drop weighted_penalty actionable
    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;lgl&gt;     
- 1 274    Sweetness   Too low   90      54     1.46             1.32  TRUE      
- 2 137    Tea flavour Too high  68.3    41     1.12             0.762 TRUE      
- 3 492    Tea flavour Too high  41.7    25     1.32             0.552 TRUE      
- 4 492    Sweetness   Too low   80      48     0.614            0.491 FALSE     
- 5 492    Bitterness  Too high  76.7    46     0.618            0.474 FALSE     
- 6 274    Tea flavour Too low   48.3    29     0.779            0.376 FALSE     
- 7 605    Sweetness   Too low   26.7    16     1.40             0.374 TRUE      
- 8 137    Sweetness   Too high  60      36     0.390            0.234 FALSE     
- 9 813    Sweetness   Too low   33.3    20     0.7              0.233 FALSE     
-10 356    Tea flavour Too low   63.3    38     0.311            0.197 FALSE     
-11 813    Tea flavour Too low   68.3    41     0.241            0.165 FALSE     
-12 137    Bitterness  Too high  80      48     0.188            0.15  FALSE     
-# ℹ 19 more rows</code></pre>
+ 1 274    Sweetness   Too low   80      48     1.79             1.43  TRUE      
+ 2 492    Sweetness   Too low   75      45     1.89             1.42  TRUE      
+ 3 356    Sweetness   Too high  66.7    40     1.13             0.752 TRUE      
+ 4 137    Sweetness   Too high  76.7    46     0.698            0.535 FALSE     
+ 5 137    Tea flavour Too high  60      36     0.601            0.361 FALSE     
+ 6 605    Bitterness  Too high  66.7    40     0.514            0.343 FALSE     
+ 7 813    Tea flavour Too low   51.7    31     0.601            0.311 FALSE     
+ 8 605    Tea flavour Too high  65      39     0.436            0.283 FALSE     
+ 9 356    Bitterness  Too low   53.3    32     0.5              0.267 FALSE     
+10 813    Sweetness   Too high  21.7    13     1.22             0.263 TRUE      
+11 813    Bitterness  Too low   46.7    28     0.484            0.226 FALSE     
+12 492    Tea flavour Too high  61.7    37     0.346            0.213 FALSE     
+# ℹ 22 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -809,7 +800,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["pct"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_drop"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["weighted_penalty"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["actionable"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"Refreshing","2":"Missing (must have)","3":"63.333","4":"2.250","5":"0.000","6":"1.425","7":"TRUE"},{"1":"Bitter","2":"Present (must not have)","3":"46.111","4":"1.197","5":"0.000","6":"0.552","7":"TRUE"},{"1":"Strong tea flavour","2":"Present (must not have)","3":"29.444","4":"1.580","5":"0.000","6":"0.465","7":"TRUE"},{"1":"Sweet","2":"Missing (must have)","3":"25.833","4":"1.072","5":"0.000","6":"0.277","7":"TRUE"},{"1":"Lingering aftertaste","2":"Present (must not have)","3":"24.722","4":"1.079","5":"0.000","6":"0.267","7":"TRUE"},{"1":"Sweet","2":"Present (must not have)","3":"13.333","4":"1.667","5":"0.000","6":"0.222","7":"FALSE"},{"1":"Astringent","2":"Present (must not have)","3":"21.111","4":"0.968","5":"0.000","6":"0.204","7":"TRUE"},{"1":"Syrupy","2":"Present (must not have)","3":"29.444","4":"0.593","5":"0.001","6":"0.175","7":"TRUE"},{"1":"Syrupy","2":"Missing (must have)","3":"5.833","4":"1.238","5":"0.071","6":"0.072","7":"FALSE"},{"1":"Fresh tea aroma","2":"Missing (must have)","3":"24.167","4":"0.133","5":"0.634","6":"0.032","7":"FALSE"},{"1":"Smoky","2":"Present (must not have)","3":"5.278","4":"-0.199","5":"0.573","6":"-0.010","7":"FALSE"},{"1":"Sour","2":"Missing (must have)","3":"6.111","4":"-0.182","5":"NA","6":"-0.011","7":"FALSE"},{"1":"Refreshing","2":"Present (must not have)","3":"0.833","4":"-2.000","5":"0.000","6":"-0.017","7":"FALSE"},{"1":"Sour","2":"Present (must not have)","3":"6.667","4":"-0.324","5":"0.281","6":"-0.022","7":"FALSE"},{"1":"Fresh tea aroma","2":"Present (must not have)","3":"18.056","4":"-0.144","5":"0.519","6":"-0.026","7":"FALSE"},{"1":"Floral","2":"Present (must not have)","3":"15.000","4":"-0.181","5":"0.456","6":"-0.027","7":"FALSE"},{"1":"Astringent","2":"Missing (must have)","3":"6.111","4":"-0.670","5":"0.237","6":"-0.041","7":"FALSE"},{"1":"Lingering aftertaste","2":"Missing (must have)","3":"8.333","4":"-0.500","5":"0.445","6":"-0.042","7":"FALSE"},{"1":"Bitter","2":"Missing (must have)","3":"3.889","4":"-1.314","5":"0.030","6":"-0.051","7":"FALSE"},{"1":"Watery","2":"Present (must not have)","3":"14.444","4":"-0.485","5":"0.018","6":"-0.070","7":"FALSE"},{"1":"Floral","2":"Missing (must have)","3":"28.889","4":"-0.285","5":"0.491","6":"-0.082","7":"FALSE"},{"1":"Smoky","2":"Missing (must have)","3":"6.389","4":"-1.609","5":"NA","6":"-0.103","7":"FALSE"},{"1":"Strong tea flavour","2":"Missing (must have)","3":"22.500","4":"-0.563","5":"0.023","6":"-0.127","7":"TRUE"},{"1":"Watery","2":"Missing (must have)","3":"0.000","4":"NaN","5":"NA","6":"NaN","7":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["type"],"name":[2],"type":["chr"],"align":["left"]},{"label":["pct"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["mean_drop"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["weighted_penalty"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["actionable"],"name":[7],"type":["lgl"],"align":["right"]}],"data":[{"1":"Refreshing","2":"Missing (must have)","3":"67.222","4":"2.131","5":"0.000","6":"1.432","7":"TRUE"},{"1":"Bitter","2":"Present (must not have)","3":"45.556","4":"1.092","5":"0.000","6":"0.497","7":"TRUE"},{"1":"Strong tea flavour","2":"Present (must not have)","3":"30.000","4":"1.509","5":"0.000","6":"0.453","7":"TRUE"},{"1":"Sweet","2":"Present (must not have)","3":"12.500","4":"1.800","5":"0.000","6":"0.225","7":"FALSE"},{"1":"Syrupy","2":"Present (must not have)","3":"28.056","4":"0.665","5":"0.000","6":"0.187","7":"TRUE"},{"1":"Sweet","2":"Missing (must have)","3":"27.222","4":"0.649","5":"0.000","6":"0.177","7":"TRUE"},{"1":"Lingering aftertaste","2":"Present (must not have)","3":"23.056","4":"0.734","5":"0.000","6":"0.169","7":"TRUE"},{"1":"Smoky","2":"Missing (must have)","3":"13.056","4":"1.043","5":"NA","6":"0.136","7":"FALSE"},{"1":"Astringent","2":"Present (must not have)","3":"19.722","4":"0.557","5":"0.006","6":"0.110","7":"FALSE"},{"1":"Syrupy","2":"Missing (must have)","3":"1.111","4":"0.750","5":"NA","6":"0.008","7":"FALSE"},{"1":"Fresh tea aroma","2":"Present (must not have)","3":"20.556","4":"0.025","5":"0.907","6":"0.005","7":"FALSE"},{"1":"Sour","2":"Present (must not have)","3":"7.778","4":"0.052","5":"0.844","6":"0.004","7":"FALSE"},{"1":"Smoky","2":"Present (must not have)","3":"4.444","4":"-0.309","5":"0.362","6":"-0.014","7":"FALSE"},{"1":"Fresh tea aroma","2":"Missing (must have)","3":"20.556","4":"-0.086","5":"0.777","6":"-0.018","7":"FALSE"},{"1":"Refreshing","2":"Present (must not have)","3":"1.389","4":"-1.969","5":"0.000","6":"-0.027","7":"FALSE"},{"1":"Bitter","2":"Missing (must have)","3":"4.167","4":"-0.667","5":"0.191","6":"-0.028","7":"FALSE"},{"1":"Floral","2":"Missing (must have)","3":"25.833","4":"-0.146","5":"0.642","6":"-0.038","7":"FALSE"},{"1":"Strong tea flavour","2":"Missing (must have)","3":"19.444","4":"-0.233","5":"0.278","6":"-0.045","7":"FALSE"},{"1":"Lingering aftertaste","2":"Missing (must have)","3":"8.333","4":"-0.550","5":"0.264","6":"-0.046","7":"FALSE"},{"1":"Watery","2":"Present (must not have)","3":"15.278","4":"-0.348","5":"0.073","6":"-0.053","7":"FALSE"},{"1":"Floral","2":"Present (must not have)","3":"14.444","4":"-0.390","5":"0.063","6":"-0.056","7":"FALSE"},{"1":"Sour","2":"Missing (must have)","3":"6.389","4":"-1.478","5":"NA","6":"-0.094","7":"FALSE"},{"1":"Astringent","2":"Missing (must have)","3":"8.056","4":"-1.921","5":"0.014","6":"-0.155","7":"FALSE"},{"1":"Watery","2":"Missing (must have)","3":"0.000","4":"NaN","5":"NA","6":"NaN","7":"FALSE"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -852,7 +843,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Astringent (present)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Bitter (present)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Lingering aftertaste (present)"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Refreshing (missing)"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Strong tea flavour (missing)"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Strong tea flavour (present)"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Sweet (missing)"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["Syrupy (present)"],"name":[9],"type":["dbl"],"align":["right"]}],"data":[{"1":"137","2":"37","3":"93","4":"62","5":"80","6":"3","7":"55","8":"0","9":"82"},{"1":"274","2":"3","3":"2","4":"2","5":"50","6":"43","7":"8","8":"68","9":"0"},{"1":"356","2":"0","3":"0","4":"0","5":"63","6":"42","7":"0","8":"0","9":"83"},{"1":"492","2":"48","3":"92","4":"45","5":"78","6":"2","7":"57","8":"78","9":"0"},{"1":"605","2":"38","3":"90","4":"40","5":"65","6":"2","7":"57","8":"5","9":"7"},{"1":"813","2":"0","3":"0","4":"0","5":"43","6":"43","7":"0","8":"3","9":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Bitter (present)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Lingering aftertaste (present)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Refreshing (missing)"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Strong tea flavour (present)"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Sweet (missing)"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Syrupy (present)"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"137","2":"90","3":"45","4":"78","5":"60","6":"0","7":"87"},{"1":"274","2":"3","3":"0","4":"58","5":"0","6":"77","7":"0"},{"1":"356","2":"0","3":"0","4":"65","5":"0","6":"0","7":"72"},{"1":"492","2":"90","3":"52","4":"70","5":"60","6":"78","7":"0"},{"1":"605","2":"90","3":"42","4":"73","5":"58","6":"3","7":"5"},{"1":"813","2":"0","3":"0","4":"58","5":"2","6":"5","7":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -876,7 +867,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["JAR"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"137","2":"reduce tea flavour","3":"remove astringent; remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour; remove syrupy"},{"1":"274","2":"increase sweetness","3":"add refreshing; add strong tea flavour; add sweet"},{"1":"356","2":"no change needed","3":"add refreshing; add strong tea flavour; remove syrupy"},{"1":"492","2":"reduce tea flavour","3":"remove astringent; remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour; add sweet"},{"1":"605","2":"increase sweetness","3":"remove astringent; remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour"},{"1":"813","2":"no change needed","3":"add refreshing; add strong tea flavour"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["JAR"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"137","2":"no change needed","3":"remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour; remove syrupy"},{"1":"274","2":"increase sweetness","3":"add refreshing; add sweet"},{"1":"356","2":"reduce sweetness","3":"add refreshing; remove syrupy"},{"1":"492","2":"increase sweetness","3":"remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour; add sweet"},{"1":"605","2":"no change needed","3":"remove bitter; remove lingering aftertaste; add refreshing; remove strong tea flavour"},{"1":"813","2":"reduce sweetness","3":"add refreshing"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -896,7 +887,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["JAR"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Actionable problems found (sample x attribute)","2":"4","3":"8"},{"1":"Tells the DIRECTION of change?","2":"Yes (too low / too high)","3":"Indirectly (present vs. absent)"},{"1":"Detects attributes not anticipated by the researcher?","2":"No (only the 3 JAR attributes)","3":"Partly (any of the 12 terms)"},{"1":"Questions per sample","2":"1 liking + 3 JAR","3":"1 liking + 12 terms (+ ideal once)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["JAR"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Actionable problems found (sample x attribute)","2":"4","3":"6"},{"1":"Tells the DIRECTION of change?","2":"Yes (too low / too high)","3":"Indirectly (present vs. absent)"},{"1":"Detects attributes not anticipated by the researcher?","2":"No (only the 3 JAR attributes)","3":"Partly (any of the 12 terms)"},{"1":"Questions per sample","2":"1 liking + 3 JAR","3":"1 liking + 12 terms (+ ideal once)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -909,7 +900,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <p><strong>With the dummy data</strong> (your numbers will differ):</p>
 <ul>
 <li>Liking does not differ systematically between groups, so the two methods can be compared fairly.</li>
-<li>JAR penalty analysis flags 4 actionable problems. The largest is sample 274: sweetness too low for 90% of consumers, costing 1.5 liking points. Note that many samples have a large % of non-JAR consumers but a small mean drop: those consumers notice the problem but it does not hurt their liking much, so it is <strong>not</strong> a priority.</li>
+<li>JAR penalty analysis flags 4 actionable problems. The largest is sample 274: sweetness too low for 80% of consumers, costing 1.8 liking points. Note that many samples have a large % of non-JAR consumers but a small mean drop: those consumers notice the problem but it does not hurt their liking much, so it is <strong>not</strong> a priority.</li>
 <li>CATA-ideal analysis points in similar directions with different words: <em>Sweet</em> missing in the low-sugar samples, <em>Bitter</em>, <em>Astringent</em> and <em>Strong tea flavour</em> present in the strong samples, <em>Syrupy</em> present in the high-sugar ones.</li>
 <li><em>Refreshing</em> comes out as the biggest “must have” penalty. Be careful: consumers may tick <em>Refreshing</em> <strong>because</strong> they like a sample, not the other way round. CATA penalties show association, not cause. A term like <em>Refreshing</em> is a consequence of the recipe, not something you can add directly.</li>
 </ul>
@@ -920,12 +911,6 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>Where the methods disagree, look at the % of consumers affected: small groups (&lt; 20%) are not a reason to reformulate.</li>
 <li>In practice the two are complementary: CATA + ideal to discover which attributes matter, JAR to fine-tune the level of the few key attributes.</li>
 </ul>
-<p><strong>Questions to discuss in class</strong></p>
-<ol type="1">
-<li>Why do we require at least 20% of consumers <em>and</em> a mean drop of at least 1 point before calling a problem actionable?</li>
-<li>A sample has 30% “too sweet” and 30% “not sweet enough”. What does this mean, and should you change the sugar level?</li>
-<li>Why is a between-subjects design used here, when Projects 2 and 3 use within-subjects designs?</li>
-</ol>
 
 
 </section>

@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sensory Practicum">
+<meta name="author" content="AWP">
 
 <title>2&nbsp; Project 2 — Napping vs.&nbsp;Polarized Sensory Positioning (PSP) on ready-to-drink teas – Guideline Skripsi S1</title>
 <style>
@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#rv-coefficient-between-the-maps" id="toc-rv-coefficient-between-the-maps" class="nav-link" data-scroll-target="#rv-coefficient-between-the-maps"><span class="header-section-number">9.4.1</span> RV coefficient between the maps</a></li>
   <li><a href="#procrustes-superimpose-the-two-maps" id="toc-procrustes-superimpose-the-two-maps" class="nav-link" data-scroll-target="#procrustes-superimpose-the-two-maps"><span class="header-section-number">9.4.2</span> Procrustes: superimpose the two maps</a></li>
-  <li><a href="#ease-and-time" id="toc-ease-and-time" class="nav-link" data-scroll-target="#ease-and-time"><span class="header-section-number">9.4.3</span> Ease and time</a></li>
+  <li><a href="#ease" id="toc-ease" class="nav-link" data-scroll-target="#ease"><span class="header-section-number">9.4.3</span> Ease</a></li>
   <li><a href="#summary-table-for-the-poster" id="toc-summary-table-for-the-poster" class="nav-link" data-scroll-target="#summary-table-for-the-poster"><span class="header-section-number">9.4.4</span> Summary table for the poster</a></li>
   </ul></li>
   </ul></li>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Penulis</div>
     <div class="quarto-title-meta-contents">
-             <p>Sensory Practicum </p>
+             <p>AWP </p>
           </div>
   </div>
     
@@ -272,7 +272,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li>How similar are the Napping and PSP maps? (RV coefficient)</li>
 <li>Can panelists recognise a pole when it is served blind? (validity check for PSP)</li>
-<li>Which method do consumers find easier, and which takes longer?</li>
+<li>Which method do consumers find easier?</li>
 </ol>
 <p><strong>Design.</strong> Within-subjects: the same ~40 untrained consumers do both methods, in counterbalanced order (half Napping first, half PSP first), with a break in between. 10 ready-to-drink teas, 3-digit codes. For PSP, 3 of the 10 teas are served as <strong>labelled poles</strong> (Pole A, B, C); all 10 teas, including the 3 pole teas, are also served <strong>blind</strong> as test samples.</p>
 </section>
@@ -433,22 +433,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-the-exported-.xlsx-looks-like" class="level1" data-number="6">
 <h1 data-number="6"><span class="header-section-number">6</span> What the exported .xlsx looks like</h1>
+<p><em>Google Forms always adds a <strong>Timestamp</strong> column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).</em></p>
 <p><strong>Napping</strong> — wide: one row per panelist.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Order</th>
 <th>Sample 274 - X (cm)</th>
@@ -461,7 +460,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-03 10:12:40</td>
 <td>1</td>
 <td>Napping first</td>
 <td>31.5</td>
@@ -476,16 +474,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>PSP</strong> — long: one row per panelist × sample.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Sample code</th>
 <th>How different … Pole A?</th>
@@ -495,7 +491,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-03 10:40:11</td>
 <td>1</td>
 <td>274</td>
 <td>2</td>
@@ -543,55 +538,51 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>poles <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A =</span> <span class="st">"274"</span>, <span class="at">B =</span> <span class="st">"605"</span>, <span class="at">C =</span> <span class="st">"721"</span>)   <span class="co"># one tea from each cluster serves as a pole</span></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2026-11-03 10:00:00"</span>, <span class="at">tz =</span> <span class="st">"Asia/Jakarta"</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>n_pan <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Napping ----</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>napping_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_pan, <span class="cf">function</span>(p) {</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  ang <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>); flip <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dv">1</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  R   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">cos</span>(ang), <span class="sc">-</span><span class="fu">sin</span>(ang), <span class="fu">sin</span>(ang), <span class="fu">cos</span>(ang)), <span class="dv">2</span>) <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">c</span>(flip, <span class="dv">1</span>))</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  xy  <span class="ot">&lt;-</span> (<span class="fu">as.matrix</span>(teas[, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>)]) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">1.1</span>), <span class="dv">10</span>)) <span class="sc">%*%</span> R</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">21</span>   <span class="sc">+</span> xy[, <span class="dv">1</span>] <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>)       <span class="co"># each panelist uses the sheet differently</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fl">14.8</span> <span class="sc">+</span> xy[, <span class="dv">2</span>] <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.5</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(xy[, <span class="dv">1</span>], <span class="fl">0.5</span>), <span class="fl">41.5</span>); xy[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(xy[, <span class="dv">2</span>], <span class="fl">0.5</span>), <span class="dv">29</span>)</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>  row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Timestamp =</span> start <span class="sc">+</span> p <span class="sc">*</span> <span class="dv">600</span> <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">300</span>, <span class="dv">600</span>)),</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                    <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p,</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Order =</span> <span class="fu">ifelse</span>(p <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Napping first"</span>, <span class="st">"PSP first"</span>),</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>                    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - X (cm)"</span>)]] <span class="ot">&lt;-</span> <span class="fu">round</span>(xy[i, <span class="dv">1</span>], <span class="dv">1</span>)</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - Y (cm)"</span>)]] <span class="ot">&lt;-</span> <span class="fu">round</span>(xy[i, <span class="dv">2</span>], <span class="dv">1</span>)</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - words"</span>)]] <span class="ot">&lt;-</span> <span class="fu">describe</span>(tea_type[i])</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  row[[<span class="st">"How easy was this task?"</span>]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  row</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- PSP ----</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>truexy <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(teas[, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>)]); <span class="fu">rownames</span>(truexy) <span class="ot">&lt;-</span> teas<span class="sc">$</span>code</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>psp_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_pan) {</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> start <span class="sc">+</span> p <span class="sc">*</span> <span class="dv">600</span> <span class="sc">+</span> <span class="dv">1800</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (cd <span class="cf">in</span> <span class="fu">sample</span>(teas<span class="sc">$</span>code)) {</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">sapply</span>(poles, <span class="cf">function</span>(pl) <span class="fu">sqrt</span>(<span class="fu">sum</span>((truexy[cd, ] <span class="sc">-</span> truexy[pl, ])<span class="sc">^</span><span class="dv">2</span>)))</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="dv">10</span>, <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">round</span>(d <span class="sc">*</span> <span class="fl">1.6</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">1.2</span>))))</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">60</span>))</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    psp_rows[[<span class="fu">length</span>(psp_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>      <span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> cd,</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole A?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">1</span>],</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole B?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">2</span>],</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole C?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">3</span>], <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>psp_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(psp_rows)</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>psp_ease <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n_pan,</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">How easy was the PSP task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)),</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>                       <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(napping_raw, <span class="st">"P2_Napping_responses.xlsx"</span>)</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(<span class="fu">list</span>(<span class="at">responses =</span> psp_raw, <span class="at">ease =</span> psp_ease), <span class="st">"P2_PSP_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>n_pan <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Napping ----</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>napping_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_pan, <span class="cf">function</span>(p) {</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>  ang <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="fl">0.4</span>, <span class="fl">0.4</span>); flip <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>), <span class="dv">1</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>  R   <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fu">cos</span>(ang), <span class="sc">-</span><span class="fu">sin</span>(ang), <span class="fu">sin</span>(ang), <span class="fu">cos</span>(ang)), <span class="dv">2</span>) <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">c</span>(flip, <span class="dv">1</span>))</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>  xy  <span class="ot">&lt;-</span> (<span class="fu">as.matrix</span>(teas[, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>)]) <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">1.1</span>), <span class="dv">10</span>)) <span class="sc">%*%</span> R</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">21</span>   <span class="sc">+</span> xy[, <span class="dv">1</span>] <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">6</span>)       <span class="co"># each panelist uses the sheet differently</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fl">14.8</span> <span class="sc">+</span> xy[, <span class="dv">2</span>] <span class="sc">*</span> <span class="fu">runif</span>(<span class="dv">1</span>, <span class="fl">2.5</span>, <span class="fl">4.5</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>  xy[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(xy[, <span class="dv">1</span>], <span class="fl">0.5</span>), <span class="fl">41.5</span>); xy[, <span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="fu">pmax</span>(xy[, <span class="dv">2</span>], <span class="fl">0.5</span>), <span class="dv">29</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  row <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Order =</span> <span class="fu">ifelse</span>(p <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Napping first"</span>, <span class="st">"PSP first"</span>),</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                    <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - X (cm)"</span>)]] <span class="ot">&lt;-</span> <span class="fu">round</span>(xy[i, <span class="dv">1</span>], <span class="dv">1</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - Y (cm)"</span>)]] <span class="ot">&lt;-</span> <span class="fu">round</span>(xy[i, <span class="dv">2</span>], <span class="dv">1</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Sample "</span>, teas<span class="sc">$</span>code[i], <span class="st">" - words"</span>)]] <span class="ot">&lt;-</span> <span class="fu">describe</span>(tea_type[i])</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  row[[<span class="st">"How easy was this task?"</span>]] <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  row</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- PSP ----</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>truexy <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(teas[, <span class="fu">c</span>(<span class="st">"x"</span>,<span class="st">"y"</span>)]); <span class="fu">rownames</span>(truexy) <span class="ot">&lt;-</span> teas<span class="sc">$</span>code</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>psp_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_pan) {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (cd <span class="cf">in</span> <span class="fu">sample</span>(teas<span class="sc">$</span>code)) {</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    d <span class="ot">&lt;-</span> <span class="fu">sapply</span>(poles, <span class="cf">function</span>(pl) <span class="fu">sqrt</span>(<span class="fu">sum</span>((truexy[cd, ] <span class="sc">-</span> truexy[pl, ])<span class="sc">^</span><span class="dv">2</span>)))</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    r <span class="ot">&lt;-</span> <span class="fu">pmin</span>(<span class="dv">10</span>, <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">round</span>(d <span class="sc">*</span> <span class="fl">1.6</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">3</span>, <span class="dv">0</span>, <span class="fl">1.2</span>))))</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    psp_rows[[<span class="fu">length</span>(psp_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> cd,</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole A?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">1</span>],</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole B?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">2</span>],</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">How different is this sample from Pole C?</span><span class="st">`</span> <span class="ot">=</span> r[<span class="dv">3</span>], <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>psp_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(psp_rows)</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>psp_ease <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n_pan,</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>                       <span class="st">`</span><span class="at">How easy was the PSP task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">1</span>)),</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>                       <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(napping_raw, <span class="st">"P2_Napping_responses.xlsx"</span>)</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(<span class="fu">list</span>(<span class="at">responses =</span> psp_raw, <span class="at">ease =</span> psp_ease), <span class="st">"P2_PSP_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-and-reshape" class="level1" data-number="8">
@@ -619,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["P1_X"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["P1_Y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["P2_X"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P2_Y"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["P3_X"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["P3_Y"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.2","2":"8.9","3":"19.3","4":"9.7","5":"32.9","6":"11.5","_rn_":"137"},{"1":"41.5","2":"14.9","3":"34.3","4":"16.7","5":"4.9","6":"16.2","_rn_":"274"},{"1":"10.5","2":"19.9","3":"16.5","4":"15.8","5":"35.8","6":"18.4","_rn_":"349"},{"1":"31.5","2":"15.5","3":"28.8","4":"17.7","5":"0.5","6":"13.1","_rn_":"356"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["P1_X"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["P1_Y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["P2_X"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["P2_Y"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["P3_X"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["P3_Y"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"21.2","2":"8.9","3":"19.3","4":"9.7","5":"22.4","6":"13.1","_rn_":"137"},{"1":"41.5","2":"14.9","3":"34.3","4":"16.7","5":"7.3","6":"20.0","_rn_":"274"},{"1":"10.5","2":"19.9","3":"16.5","4":"15.8","5":"40.4","6":"21.7","_rn_":"349"},{"1":"31.5","2":"15.5","3":"28.8","4":"17.7","5":"9.1","6":"14.9","_rn_":"356"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -630,7 +621,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Sample 274 - words"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Sample 813 - words"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Sample 356 - words"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"like tea leaves, strong, enak","2":"like tea leaves; bitter","3":"dark dan sepet"},{"1":"Bitter, sepet","2":"strong, bitter","3":"smoky; sepet; not my favourite"},{"1":"dark","2":"strong","3":"kuat; bitter"},{"1":"pahit, sepet, strong tea","2":"astringent dan bitter dan sepet","3":"strong, bitter"},{"1":"Like tea leaves; bitter; enak","2":"smoky, dark, pahit","3":"Astringent, dark, suka"},{"1":"bitter; strong tea; smoky; flowery","2":"bitter, sepet, kuat","3":"kuat, like tea leaves"},{"1":"pahit","2":"strong, strong tea","3":"Strong, strong tea, Bitter, Pahit, fragrant"},{"1":"sepet","2":"strong","3":"dark; strong"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Sample 274 - words"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Sample 813 - words"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Sample 356 - words"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"bitter dan like tea leaves","2":"strong tea, pahit, Astringent, dark, astringent","3":"sepet"},{"1":"Kuat dan bitter dan sepet","2":"bitter, dark, good","3":"astringent dan bitter dan strong"},{"1":"strong","2":"kuat; bitter","3":"bitter, strong, kuat, like tea leaves, enak"},{"1":"dark dan pahit dan kuat dan manis","2":"strong, bitter","3":"sepet, pahit, like tea leaves"},{"1":"smoky, dark, pahit","2":"Astringent, dark, suka","3":"bitter; pahit; dark; strong"},{"1":"sepet; bitter; strong; suka","2":"bitter","3":"kuat dan smoky"},{"1":"Strong tea, bitter, Like tea leaves","2":"Strong, Good","3":"dark, suka"},{"1":"Pahit","2":"kuat dan bitter dan dark dan pahit dan good","3":"strong, pahit, smoky, milky-like, nice"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -664,12 +655,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span>(<span class="fu">table</span>(nap_words<span class="sc">$</span>words), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)     <span class="co"># check what is left</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-     sweet    jasmine     strong     bitter  too sweet   fragrant astringent 
-        91         85         85         84         77         71         48 
-refreshing    flowery      light     sugary       dark     watery      bland 
-        41         34         31         31         27         27         24 
-      mild milky-like      smoky      candy 
-        21         21         16         15 </code></pre>
+     sweet    jasmine     bitter     strong  too sweet   fragrant astringent 
+        93         90         85         81         78         65         51 
+refreshing    flowery     sugary      light       dark       mild milky-like 
+        51         38         37         36         28         28         28 
+     bland      candy     watery      smoky 
+        20         18         18         13 </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>word_tab <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(<span class="fu">table</span>(nap_words<span class="sc">$</span>code, nap_words<span class="sc">$</span>words))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>word_tab <span class="ot">&lt;-</span> word_tab[, <span class="fu">colSums</span>(word_tab) <span class="sc">&gt;=</span> <span class="dv">5</span>]       <span class="co"># keep words cited at least 5 times</span></span>
@@ -677,7 +668,7 @@ refreshing    flowery      light     sugary       dark     watery      bland
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["astringent"],"name":[1],"type":["int"],"align":["right"]},{"label":["bitter"],"name":[2],"type":["int"],"align":["right"]},{"label":["bland"],"name":[3],"type":["int"],"align":["right"]},{"label":["candy"],"name":[4],"type":["int"],"align":["right"]},{"label":["dark"],"name":[5],"type":["int"],"align":["right"]},{"label":["flowery"],"name":[6],"type":["int"],"align":["right"]},{"label":["fragrant"],"name":[7],"type":["int"],"align":["right"]},{"label":["jasmine"],"name":[8],"type":["int"],"align":["right"]},{"label":["light"],"name":[9],"type":["int"],"align":["right"]},{"label":["mild"],"name":[10],"type":["int"],"align":["right"]},{"label":["milky-like"],"name":[11],"type":["int"],"align":["right"]},{"label":["refreshing"],"name":[12],"type":["int"],"align":["right"]},{"label":["smoky"],"name":[13],"type":["int"],"align":["right"]},{"label":["strong"],"name":[14],"type":["int"],"align":["right"]},{"label":["sugary"],"name":[15],"type":["int"],"align":["right"]},{"label":["sweet"],"name":[16],"type":["int"],"align":["right"]},{"label":["too sweet"],"name":[17],"type":["int"],"align":["right"]},{"label":["watery"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"0","4":"8","5":"0","6":"0","7":"0","8":"0","9":"6","10":"0","11":"7","12":"1","13":"0","14":"1","15":"9","16":"27","17":"26","18":"0","_rn_":"137"},{"1":"13","2":"28","3":"0","4":"0","5":"8","6":"1","7":"0","8":"0","9":"0","10":"0","11":"0","12":"0","13":"4","14":"25","15":"0","16":"1","17":"0","18":"1","_rn_":"274"},{"1":"0","2":"2","3":"1","4":"0","5":"0","6":"11","7":"22","8":"28","9":"0","10":"0","11":"0","12":"12","13":"1","14":"0","15":"0","16":"0","17":"0","18":"1","_rn_":"349"},{"1":"19","2":"22","3":"0","4":"0","5":"12","6":"0","7":"2","8":"0","9":"2","10":"0","11":"0","12":"0","13":"6","14":"26","15":"0","16":"0","17":"0","18":"1","_rn_":"356"},{"1":"0","2":"2","3":"1","4":"2","5":"0","6":"0","7":"1","8":"2","9":"2","10":"0","11":"7","12":"0","13":"0","14":"1","15":"7","16":"32","17":"29","18":"0","_rn_":"492"},{"1":"0","2":"0","3":"22","4":"1","5":"0","6":"0","7":"1","8":"1","9":"14","10":"20","11":"0","12":"3","13":"0","14":"0","15":"0","16":"0","17":"0","18":"22","_rn_":"580"},{"1":"0","2":"0","3":"0","4":"2","5":"0","6":"0","7":"0","8":"0","9":"6","10":"0","11":"7","12":"0","13":"0","14":"0","15":"15","16":"30","17":"21","18":"0","_rn_":"605"},{"1":"0","2":"0","3":"0","4":"0","5":"0","6":"14","7":"16","8":"29","9":"1","10":"1","11":"0","12":"10","13":"0","14":"0","15":"0","16":"1","17":"1","18":"0","_rn_":"721"},{"1":"15","2":"29","3":"0","4":"1","5":"7","6":"0","7":"0","8":"1","9":"0","10":"0","11":"0","12":"1","13":"5","14":"32","15":"0","16":"0","17":"0","18":"1","_rn_":"813"},{"1":"1","2":"1","3":"0","4":"1","5":"0","6":"8","7":"29","8":"24","9":"0","10":"0","11":"0","12":"14","13":"0","14":"0","15":"0","16":"0","17":"0","18":"1","_rn_":"958"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["astringent"],"name":[1],"type":["int"],"align":["right"]},{"label":["bitter"],"name":[2],"type":["int"],"align":["right"]},{"label":["bland"],"name":[3],"type":["int"],"align":["right"]},{"label":["candy"],"name":[4],"type":["int"],"align":["right"]},{"label":["dark"],"name":[5],"type":["int"],"align":["right"]},{"label":["flowery"],"name":[6],"type":["int"],"align":["right"]},{"label":["fragrant"],"name":[7],"type":["int"],"align":["right"]},{"label":["jasmine"],"name":[8],"type":["int"],"align":["right"]},{"label":["light"],"name":[9],"type":["int"],"align":["right"]},{"label":["mild"],"name":[10],"type":["int"],"align":["right"]},{"label":["milky-like"],"name":[11],"type":["int"],"align":["right"]},{"label":["refreshing"],"name":[12],"type":["int"],"align":["right"]},{"label":["smoky"],"name":[13],"type":["int"],"align":["right"]},{"label":["strong"],"name":[14],"type":["int"],"align":["right"]},{"label":["sugary"],"name":[15],"type":["int"],"align":["right"]},{"label":["sweet"],"name":[16],"type":["int"],"align":["right"]},{"label":["too sweet"],"name":[17],"type":["int"],"align":["right"]},{"label":["watery"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"0","4":"8","5":"0","6":"0","7":"0","8":"1","9":"3","10":"0","11":"5","12":"1","13":"0","14":"0","15":"15","16":"30","17":"26","18":"0","_rn_":"137"},{"1":"17","2":"28","3":"0","4":"0","5":"8","6":"0","7":"0","8":"0","9":"0","10":"1","11":"0","12":"0","13":"4","14":"29","15":"0","16":"1","17":"0","18":"0","_rn_":"274"},{"1":"0","2":"2","3":"1","4":"0","5":"0","6":"12","7":"23","8":"27","9":"2","10":"0","11":"0","12":"14","13":"0","14":"0","15":"0","16":"1","17":"1","18":"0","_rn_":"349"},{"1":"17","2":"25","3":"0","4":"0","5":"11","6":"0","7":"0","8":"1","9":"0","10":"1","11":"2","12":"0","13":"5","14":"24","15":"0","16":"0","17":"0","18":"0","_rn_":"356"},{"1":"1","2":"0","3":"1","4":"1","5":"0","6":"0","7":"1","8":"0","9":"1","10":"0","11":"12","12":"0","13":"1","14":"0","15":"11","16":"27","17":"29","18":"0","_rn_":"492"},{"1":"0","2":"0","3":"17","4":"0","5":"0","6":"0","7":"0","8":"1","9":"22","10":"25","11":"0","12":"6","13":"0","14":"1","15":"0","16":"0","17":"0","18":"16","_rn_":"580"},{"1":"0","2":"1","3":"0","4":"7","5":"0","6":"0","7":"0","8":"0","9":"7","10":"0","11":"7","12":"1","13":"0","14":"0","15":"11","16":"33","17":"22","18":"1","_rn_":"605"},{"1":"0","2":"1","3":"0","4":"2","5":"0","6":"14","7":"18","8":"27","9":"0","10":"0","11":"0","12":"15","13":"1","14":"1","15":"0","16":"0","17":"0","18":"0","_rn_":"721"},{"1":"15","2":"24","3":"0","4":"0","5":"9","6":"1","7":"0","8":"0","9":"0","10":"0","11":"2","12":"0","13":"2","14":"26","15":"0","16":"0","17":"0","18":"0","_rn_":"813"},{"1":"0","2":"3","3":"1","4":"0","5":"0","6":"11","7":"23","8":"33","9":"1","10":"1","11":"0","12":"14","13":"0","14":"0","15":"0","16":"1","17":"0","18":"1","_rn_":"958"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -695,10 +686,10 @@ refreshing    flowery      light     sugary       dark     watery      bland
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(mfa<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ], <span class="dv">1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       eigenvalue percentage of variance cumulative percentage of variance
-comp 1       31.0                   58.0                              58.0
-comp 2       12.6                   23.5                              81.5
-comp 3        2.0                    3.8                              85.3
-comp 4        1.8                    3.3                              88.6</code></pre>
+comp 1       31.3                   59.9                              59.9
+comp 2       11.0                   21.0                              81.0
+comp 3        2.1                    3.9                              84.9
+comp 4        1.8                    3.5                              88.5</code></pre>
 </div>
 </div>
 <p><strong>Placing the words on the map.</strong> Each word is placed at the <strong>weighted average position of the teas it was used for</strong> (weights = how often it was cited for each tea). A word used only for the jasmine teas sits among the jasmine teas; a word used for many different teas ends up near the centre, which tells you it does not discriminate.</p>
@@ -710,7 +701,7 @@ comp 4        1.8                    3.3                              88.6</code
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Dim.1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Dim.2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["word"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1.2317674","2":"-4.6622824","3":"sweet","4":"91","_rn_":"sweet"},{"1":"6.1432770","2":"3.0507269","3":"jasmine","4":"85","_rn_":"jasmine"},{"1":"-7.3714325","2":"1.6311113","3":"strong","4":"85","_rn_":"strong"},{"1":"-6.9644161","2":"1.6913694","3":"bitter","4":"84","_rn_":"bitter"},{"1":"1.3764546","2":"-4.8029747","3":"too sweet","4":"77","_rn_":"too sweet"},{"1":"5.8256911","2":"2.7713853","3":"fragrant","4":"71","_rn_":"fragrant"},{"1":"-7.1578158","2":"1.5949504","3":"astringent","4":"48","_rn_":"astringent"},{"1":"5.4419154","2":"2.6307808","3":"refreshing","4":"41","_rn_":"refreshing"},{"1":"6.1242423","2":"3.4151636","3":"flowery","4":"34","_rn_":"flowery"},{"1":"0.1779056","2":"-2.1308977","3":"light","4":"31","_rn_":"light"},{"1":"1.3032222","2":"-4.7615484","3":"sugary","4":"31","_rn_":"sugary"},{"1":"-7.3854702","2":"1.4343283","3":"dark","4":"27","_rn_":"dark"},{"1":"-0.8529341","2":"0.2481251","3":"watery","4":"27","_rn_":"watery"},{"1":"-0.1973506","2":"-0.2409589","3":"bland","4":"24","_rn_":"bland"},{"1":"-0.2608451","2":"0.1342490","3":"mild","4":"21","_rn_":"mild"},{"1":"1.3126243","2":"-4.8968637","3":"milky-like","4":"21","_rn_":"milky-like"},{"1":"-6.4867659","2":"1.5872069","3":"smoky","4":"16","_rn_":"smoky"},{"1":"1.0815363","2":"-4.0110780","3":"candy","4":"15","_rn_":"candy"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Dim.1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Dim.2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["word"],"name":[3],"type":["chr"],"align":["left"]},{"label":["n"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"-1.0025419","2":"-4.4320496","3":"sweet","4":"93","_rn_":"sweet"},{"1":"-6.3529412","2":"2.6661800","3":"jasmine","4":"90","_rn_":"jasmine"},{"1":"6.3073276","2":"1.7449402","3":"bitter","4":"85","_rn_":"bitter"},{"1":"7.2761197","2":"1.9109793","3":"strong","4":"81","_rn_":"strong"},{"1":"-1.0461393","2":"-4.6518409","3":"too sweet","4":"78","_rn_":"too sweet"},{"1":"-6.5857926","2":"2.5840938","3":"fragrant","4":"65","_rn_":"fragrant"},{"1":"7.1196843","2":"1.5417754","3":"astringent","4":"51","_rn_":"astringent"},{"1":"-5.6177321","2":"2.2580026","3":"refreshing","4":"51","_rn_":"refreshing"},{"1":"-6.3373829","2":"2.9641658","3":"flowery","4":"38","_rn_":"flowery"},{"1":"-1.1339327","2":"-4.6719406","3":"sugary","4":"37","_rn_":"sugary"},{"1":"-0.5017911","2":"-1.2233148","3":"light","4":"36","_rn_":"light"},{"1":"7.3091858","2":"1.7429984","3":"dark","4":"28","_rn_":"dark"},{"1":"0.8842389","2":"0.1172201","3":"mild","4":"28","_rn_":"mild"},{"1":"0.4066801","2":"-3.8839956","3":"milky-like","4":"28","_rn_":"milky-like"},{"1":"-0.1491256","2":"-0.1202397","3":"bland","4":"20","_rn_":"bland"},{"1":"-2.0062012","2":"-3.4365465","3":"candy","4":"18","_rn_":"candy"},{"1":"0.1994826","2":"-0.1596958","3":"watery","4":"18","_rn_":"watery"},{"1":"5.7476962","2":"1.2238232","3":"smoky","4":"13","_rn_":"smoky"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -768,7 +759,7 @@ comp 4        1.8                    3.3                              88.6</code
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["A"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["B"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["C"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["own_pole"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"274","2":"0.525","3":"7.40","4":"8.50","5":"A"},{"1":"605","2":"7.175","3":"0.55","4":"6.55","5":"B"},{"1":"721","2":"9.025","3":"6.40","4":"0.75","5":"C"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["A"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["B"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["C"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["own_pole"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"274","2":"0.600","3":"7.300","4":"9.00","5":"A"},{"1":"605","2":"7.150","3":"0.525","4":"6.65","5":"B"},{"1":"721","2":"9.225","3":"5.825","4":"0.45","5":"C"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -791,9 +782,9 @@ comp 4        1.8                    3.3                              88.6</code
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(mfa_psp<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ], <span class="dv">1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       eigenvalue percentage of variance cumulative percentage of variance
-comp 1       37.3                   59.7                              59.7
-comp 2       17.6                   28.1                              87.8
-comp 3        2.6                    4.2                              92.0</code></pre>
+comp 1       37.3                   60.8                              60.8
+comp 2       16.1                   26.3                              87.0
+comp 3        2.3                    3.7                              90.8</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>psp_coord <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(mfa_psp<span class="sc">$</span>ind<span class="sc">$</span>coord[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="at">code =</span> <span class="fu">rownames</span>(psp_mat),</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">pole =</span> <span class="fu">ifelse</span>(<span class="fu">rownames</span>(psp_mat) <span class="sc">%in%</span> poles, <span class="st">"pole"</span>, <span class="st">"test"</span>))</span>
@@ -826,13 +817,13 @@ comp 3        2.6                    4.2                              92.0</code
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>rv[<span class="fu">c</span>(<span class="st">"rv"</span>, <span class="st">"rvstd"</span>, <span class="st">"p.value"</span>)]</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$rv
-[1] 0.9811785
+[1] 0.9729596
 
 $rvstd
-[1] 6.203801
+[1] 6.144577
 
 $p.value
-[1] 0.0001235318</code></pre>
+[1] 0.0001680678</code></pre>
 </div>
 </div>
 </section>
@@ -866,21 +857,21 @@ $p.value
 </div>
 </div>
 </section>
-<section id="ease-and-time" class="level3" data-number="9.4.3">
-<h3 data-number="9.4.3" class="anchored" data-anchor-id="ease-and-time"><span class="header-section-number">9.4.3</span> Ease and time</h3>
+<section id="ease" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="ease"><span class="header-section-number">9.4.3</span> Ease</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ease <span class="ot">&lt;-</span> napping_raw <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">panelist =</span> <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span>, <span class="at">Napping =</span> <span class="st">`</span><span class="at">How easy was this task?</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(psp_ease <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">panelist =</span> <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span>, <span class="at">PSP =</span> <span class="st">`</span><span class="at">How easy was the PSP task?</span><span class="st">`</span>),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="st">"panelist"</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ease[, <span class="fu">c</span>(<span class="st">"Napping"</span>, <span class="st">"PSP"</span>)])</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Napping         PSP       
- Min.   :2.0   Min.   :3.000  
- 1st Qu.:4.0   1st Qu.:4.000  
- Median :4.0   Median :5.000  
- Mean   :4.4   Mean   :5.125  
- 3rd Qu.:5.0   3rd Qu.:6.000  
- Max.   :7.0   Max.   :7.000  </code></pre>
+<pre><code>    Napping           PSP      
+ Min.   :2.000   Min.   :3.00  
+ 1st Qu.:3.750   1st Qu.:4.75  
+ Median :5.000   Median :6.00  
+ Mean   :4.475   Mean   :5.40  
+ 3rd Qu.:5.000   3rd Qu.:6.00  
+ Max.   :7.000   Max.   :7.00  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(ease<span class="sc">$</span>Napping, ease<span class="sc">$</span>PSP, <span class="at">paired =</span> <span class="cn">TRUE</span>)    <span class="co"># same panelists -&gt; paired test</span></span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -888,37 +879,29 @@ $p.value
     Wilcoxon signed rank exact test
 
 data:  ease$Napping and ease$PSP
-V = 209, p-value = 0.0176
+V = 162.5, p-value = 0.00111
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>psp_time <span class="ot">&lt;-</span> psp_raw <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">PSP_min =</span> <span class="fu">as.numeric</span>(<span class="fu">difftime</span>(<span class="fu">max</span>(Timestamp), <span class="fu">min</span>(Timestamp), <span class="at">units =</span> <span class="st">"mins"</span>)))</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(psp_time<span class="sc">$</span>PSP_min)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  6.167   6.438   6.792   6.863   7.217   8.183 </code></pre>
 </div>
-</div>
-<p>For Napping there is only one submission per panelist, so the form cannot time it. <strong>Write the start time on each panelist’s sheet</strong> (or add a “start time” short-answer question) if you want to compare durations.</p>
 </section>
 <section id="summary-table-for-the-poster" class="level3" data-number="9.4.4">
 <h3 data-number="9.4.4" class="anchored" data-anchor-id="summary-table-for-the-poster"><span class="header-section-number">9.4.4</span> Summary table for the poster</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Criterion =</span> <span class="fu">c</span>(<span class="st">"Variance explained, Dim 1 + 2 (%)"</span>,</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"RV between maps (p-value)"</span>,</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Median ease rating (1-7)"</span>,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Words collected"</span>),</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Napping =</span> <span class="fu">c</span>(<span class="fu">round</span>(mfa<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sprintf</span>(<span class="st">"%.2f (p = %.3f)"</span>, rv<span class="sc">$</span>rv, rv<span class="sc">$</span>p.value),</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">median</span>(ease<span class="sc">$</span>Napping),</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"yes, free description"</span>),</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">PSP =</span> <span class="fu">c</span>(<span class="fu">round</span>(mfa_psp<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>), <span class="st">""</span>,</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">median</span>(ease<span class="sc">$</span>PSP), <span class="st">"no"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">Criterion =</span> <span class="fu">c</span>(<span class="st">"Variance explained, Dim 1 + 2 (%)"</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"RV between maps (p-value)"</span>,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Median ease rating (1-7)"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Words collected"</span>),</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Napping =</span> <span class="fu">c</span>(<span class="fu">round</span>(mfa<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>),</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">sprintf</span>(<span class="st">"%.2f (p = %.3f)"</span>, rv<span class="sc">$</span>rv, rv<span class="sc">$</span>p.value),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">median</span>(ease<span class="sc">$</span>Napping),</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>              <span class="st">"yes, free description"</span>),</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">PSP =</span> <span class="fu">c</span>(<span class="fu">round</span>(mfa_psp<span class="sc">$</span>eig[<span class="dv">2</span>, <span class="dv">3</span>], <span class="dv">1</span>), <span class="st">""</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">median</span>(ease<span class="sc">$</span>PSP), <span class="st">"no"</span>))</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Napping"],"name":[2],"type":["chr"],"align":["left"]},{"label":["PSP"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Variance explained, Dim 1 + 2 (%)","2":"81.5","3":"87.8"},{"1":"RV between maps (p-value)","2":"0.98 (p = 0.000)","3":""},{"1":"Median ease rating (1-7)","2":"4","3":"5"},{"1":"Words collected","2":"yes, free description","3":"no"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Napping"],"name":[2],"type":["chr"],"align":["left"]},{"label":["PSP"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Variance explained, Dim 1 + 2 (%)","2":"81","3":"87"},{"1":"RV between maps (p-value)","2":"0.97 (p = 0.000)","3":""},{"1":"Median ease rating (1-7)","2":"5","3":"6"},{"1":"Words collected","2":"yes, free description","3":"no"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -930,9 +913,9 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <h1 data-number="10"><span class="header-section-number">10</span> Interpretation</h1>
 <p><strong>With the dummy data</strong> (your numbers will differ):</p>
 <ul>
-<li>The Napping MFA explains 81.5% of the variance on the first two dimensions. The descriptors show what the map means: in the dummy data the bitter/strong/astringent black teas, the sweet/sugary teas and the jasmine/flowery/fragrant teas form three clearly separated groups, with the mild tea (<em>watery</em>, <em>bland</em>) in between. Words that land near the centre (e.g., <em>refreshing</em>, <em>light</em>) were used for several kinds of tea and do not help to tell them apart.</li>
+<li>The Napping MFA explains 81% of the variance on the first two dimensions. The descriptors show what the map means: in the dummy data the bitter/strong/astringent black teas, the sweet/sugary teas and the jasmine/flowery/fragrant teas form three clearly separated groups, with the mild tea (<em>watery</em>, <em>bland</em>) in between. Words that land near the centre (e.g., <em>refreshing</em>, <em>light</em>) were used for several kinds of tea and do not help to tell them apart.</li>
 <li>The blind poles were rated close to 0 against their own pole, so panelists could use the poles as intended. If this fails in your data, the poles are too similar to each other or to the test samples.</li>
-<li>RV = 0.98 (p = &lt;0.001): the two methods produce essentially the same product configuration. The Procrustes plot shows which individual teas move between methods.</li>
+<li>RV = 0.97 (p = &lt;0.001): the two methods produce essentially the same product configuration. The Procrustes plot shows which individual teas move between methods.</li>
 </ul>
 <p><strong>How to write the conclusion.</strong></p>
 <ul>
@@ -940,12 +923,6 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <li>Low RV → look at which teas move. PSP can only “see” differences that relate to the 3 poles. A tea that is different from all three poles in a new way (e.g., smoky) will be poorly placed. That is the main limitation of PSP: <strong>the choice of poles determines what can be detected.</strong></li>
 <li>Discuss order effects (Napping first vs.&nbsp;PSP first) using the <em>Order</em> column.</li>
 </ul>
-<p><strong>Questions to discuss in class</strong></p>
-<ol type="1">
-<li>Why is <code>type = "c"</code> (not scaled) used in the Napping MFA rather than <code>"s"</code> (scaled)?</li>
-<li>How would you choose the 3 poles before you know what the product space looks like?</li>
-<li>What would happen to the PSP map if two poles were very similar to each other?</li>
-</ol>
 
 
 </section>

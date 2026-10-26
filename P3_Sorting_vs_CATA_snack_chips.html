@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sensory Practicum">
+<meta name="author" content="AWP">
 
 <title>3&nbsp; Project 3 — Free sorting vs.&nbsp;CATA on snack chips – Guideline Skripsi S1</title>
 <style>
@@ -239,7 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Penulis</div>
     <div class="quarto-title-meta-contents">
-             <p>Sensory Practicum </p>
+             <p>AWP </p>
           </div>
   </div>
     
@@ -452,21 +452,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="what-the-exported-.xlsx-looks-like" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> What the exported .xlsx looks like</h1>
+<p><em>Google Forms always adds a <strong>Timestamp</strong> column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).</em></p>
 <p><strong>Sorting</strong> — one row per panelist; the grid becomes one column per sample:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 12%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Timestamp</th>
 <th>Panelist ID</th>
 <th>Order</th>
 <th>Which group did you put each sample in? [274]</th>
@@ -478,7 +477,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>2026-11-04 13:05:10</td>
 <td>1</td>
 <td>Sorting first</td>
 <td>Group 2</td>
@@ -542,55 +540,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(<span class="fu">unique</span>(w), <span class="at">collapse =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">", "</span>, <span class="st">", "</span>, <span class="st">", "</span>, <span class="st">"; "</span>, <span class="st">" dan "</span>), <span class="dv">1</span>))</span>
 <span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">"2026-11-04 13:00:00"</span>, <span class="at">tz =</span> <span class="st">"Asia/Jakarta"</span>)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>n_pan <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Sorting ----</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>sort_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_pan, <span class="cf">function</span>(p) {</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  perc <span class="ot">&lt;-</span> prof <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(prof), <span class="dv">0</span>, <span class="fl">0.9</span>), <span class="fu">nrow</span>(prof))</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  k    <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  grp  <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(perc, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">10</span>)<span class="sc">$</span>cluster</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  grp  <span class="ot">&lt;-</span> <span class="fu">match</span>(grp, <span class="fu">unique</span>(grp))                      <span class="co"># relabel 1, 2, 3 ...</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  row  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Timestamp =</span> start <span class="sc">+</span> p <span class="sc">*</span> <span class="dv">300</span>, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p,</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Order =</span> <span class="fu">ifelse</span>(p <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Sorting first"</span>, <span class="st">"CATA first"</span>),</span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>                     <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chips<span class="sc">$</span>code))</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Which group did you put each sample in? ["</span>, chips<span class="sc">$</span>code[i], <span class="st">"]"</span>)]] <span class="ot">&lt;-</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">"Group"</span>, grp[i])</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>) {</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="st">""</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (g <span class="sc">&lt;=</span> k) {</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>      w <span class="ot">&lt;-</span> <span class="fu">describe_group</span>(<span class="fu">colMeans</span>(perc[grp <span class="sc">==</span> g, , <span class="at">drop =</span> <span class="cn">FALSE</span>]))</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Describe Group "</span>, g, <span class="st">" in a few words"</span>)]] <span class="ot">&lt;-</span> w</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>  row</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>}))</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- CATA ----</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>cata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_pan) {</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>  t <span class="ot">&lt;-</span> start <span class="sc">+</span> p <span class="sc">*</span> <span class="dv">300</span> <span class="sc">+</span> <span class="dv">1500</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (cd <span class="cf">in</span> <span class="fu">sample</span>(chips<span class="sc">$</span>code)) {</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    latent  <span class="ot">&lt;-</span> prof[cd, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(terms), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    t <span class="ot">&lt;-</span> t <span class="sc">+</span> <span class="fu">round</span>(<span class="fu">runif</span>(<span class="dv">1</span>, <span class="dv">40</span>, <span class="dv">80</span>))</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>    cata_rows[[<span class="fu">length</span>(cata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>      <span class="at">Timestamp =</span> t, <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> cd,</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(terms[latent <span class="sc">&gt;</span> <span class="fl">1.6</span>], <span class="at">collapse =</span> <span class="st">", "</span>),</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>cata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(cata_rows)</span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Feedback ----</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>feedback_raw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n_pan,</span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">How easy was the sorting task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>)),</span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">How easy was the checklist (CATA) task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)),</span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(sort_raw,     <span class="st">"P3_Sorting_responses.xlsx"</span>)</span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(cata_raw,     <span class="st">"P3_CATA_responses.xlsx"</span>)</span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(feedback_raw, <span class="st">"P3_Feedback_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>n_pan <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Sorting ----</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>sort_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(<span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span>n_pan, <span class="cf">function</span>(p) {</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>  perc <span class="ot">&lt;-</span> prof <span class="sc">+</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(prof), <span class="dv">0</span>, <span class="fl">0.9</span>), <span class="fu">nrow</span>(prof))</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>  k    <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>))</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>  grp  <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(perc, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">10</span>)<span class="sc">$</span>cluster</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>  grp  <span class="ot">&lt;-</span> <span class="fu">match</span>(grp, <span class="fu">unique</span>(grp))                      <span class="co"># relabel 1, 2, 3 ...</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  row  <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p,</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Order =</span> <span class="fu">ifelse</span>(p <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Sorting first"</span>, <span class="st">"CATA first"</span>),</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>                     <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_along</span>(chips<span class="sc">$</span>code))</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Which group did you put each sample in? ["</span>, chips<span class="sc">$</span>code[i], <span class="st">"]"</span>)]] <span class="ot">&lt;-</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">paste</span>(<span class="st">"Group"</span>, grp[i])</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>) {</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    w <span class="ot">&lt;-</span> <span class="st">""</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (g <span class="sc">&lt;=</span> k) {</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>      w <span class="ot">&lt;-</span> <span class="fu">describe_group</span>(<span class="fu">colMeans</span>(perc[grp <span class="sc">==</span> g, , <span class="at">drop =</span> <span class="cn">FALSE</span>]))</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    row[[<span class="fu">paste0</span>(<span class="st">"Describe Group "</span>, g, <span class="st">" in a few words"</span>)]] <span class="ot">&lt;-</span> w</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>  row</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>}))</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- CATA ----</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>cata_rows <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_pan) {</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (cd <span class="cf">in</span> <span class="fu">sample</span>(chips<span class="sc">$</span>code)) {</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>    latent  <span class="ot">&lt;-</span> prof[cd, ] <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="fu">length</span>(terms), <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>    cata_rows[[<span class="fu">length</span>(cata_rows) <span class="sc">+</span> <span class="dv">1</span>]] <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> p, <span class="st">`</span><span class="at">Sample code</span><span class="st">`</span> <span class="ot">=</span> cd,</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>      <span class="st">`</span><span class="at">Which of these terms describe this sample?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(terms[latent <span class="sc">&gt;</span> <span class="fl">1.6</span>], <span class="at">collapse =</span> <span class="st">", "</span>),</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>      <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>cata_raw <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(cata_rows)</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Feedback ----</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>feedback_raw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">`</span><span class="at">Panelist ID</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>n_pan,</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">How easy was the sorting task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>)),</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">How easy was the checklist (CATA) task?</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, n_pan, <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">1</span>)),</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(sort_raw,     <span class="st">"P3_Sorting_responses.xlsx"</span>)</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(cata_raw,     <span class="st">"P3_CATA_responses.xlsx"</span>)</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xlsx</span>(feedback_raw, <span class="st">"P3_Feedback_responses.xlsx"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="import-and-reshape" class="level1" data-number="9">
@@ -798,7 +793,7 @@ dim 4        0.3                   10.9                              77.2</code>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Q"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[4],"type":["lgl"],"align":["right"]}],"data":[{"1":"Crunchy","2":"82.97059","3":"1.231581e-14","4":"TRUE","_rn_":"Crunchy"},{"1":"Hard","2":"185.55000","3":"7.024066e-36","4":"TRUE","_rn_":"Hard"},{"1":"Oily","2":"130.43172","3":"2.302222e-24","4":"TRUE","_rn_":"Oily"},{"1":"Salty","2":"142.18427","3":"8.333808e-27","4":"TRUE","_rn_":"Salty"},{"1":"Spicy","2":"351.15084","3":"5.143347e-71","4":"TRUE","_rn_":"Spicy"},{"1":"Sweet","2":"300.25532","3":"3.633488e-60","4":"TRUE","_rn_":"Sweet"},{"1":"Savoury","2":"90.73638","3":"3.295856e-16","4":"TRUE","_rn_":"Savoury"},{"1":"Beany","2":"372.73942","3":"1.260803e-75","4":"TRUE","_rn_":"Beany"},{"1":"Garlic","2":"169.37536","3":"1.743376e-32","4":"TRUE","_rn_":"Garlic"},{"1":"Cheesy","2":"347.75556","3":"2.728576e-70","4":"TRUE","_rn_":"Cheesy"},{"1":"Starchy","2":"222.24390","3":"1.292334e-43","4":"TRUE","_rn_":"Starchy"},{"1":"Burnt","2":"48.65823","3":"7.392445e-08","4":"TRUE","_rn_":"Burnt"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["term"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Q"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["p"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["significant"],"name":[4],"type":["lgl"],"align":["right"]}],"data":[{"1":"Crunchy","2":"91.34661","3":"2.477397e-16","4":"TRUE","_rn_":"Crunchy"},{"1":"Hard","2":"165.13919","3":"1.344816e-31","4":"TRUE","_rn_":"Hard"},{"1":"Oily","2":"140.13734","3":"2.221811e-26","4":"TRUE","_rn_":"Oily"},{"1":"Salty","2":"145.54176","3":"1.666305e-27","4":"TRUE","_rn_":"Salty"},{"1":"Spicy","2":"322.89459","3":"5.474785e-65","4":"TRUE","_rn_":"Spicy"},{"1":"Sweet","2":"314.35714","3":"3.610420e-63","4":"TRUE","_rn_":"Sweet"},{"1":"Savoury","2":"112.26316","3":"1.303905e-20","4":"TRUE","_rn_":"Savoury"},{"1":"Beany","2":"361.76000","3":"2.792912e-73","4":"TRUE","_rn_":"Beany"},{"1":"Garlic","2":"182.86435","3":"2.576215e-35","4":"TRUE","_rn_":"Garlic"},{"1":"Cheesy","2":"368.79070","3":"8.796316e-75","4":"TRUE","_rn_":"Cheesy"},{"1":"Starchy","2":"259.66307","3":"1.537956e-51","4":"TRUE","_rn_":"Starchy"},{"1":"Burnt","2":"47.06599","3":"1.489596e-07","4":"TRUE","_rn_":"Burnt"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -809,9 +804,9 @@ dim 4        0.3                   10.9                              77.2</code>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(ca<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, ], <span class="dv">1</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      eigenvalue percentage of variance cumulative percentage of variance
-dim 1        0.3                   38.2                              38.2
-dim 2        0.2                   28.6                              66.8
-dim 3        0.1                   13.8                              80.6</code></pre>
+dim 1        0.3                   37.6                              37.6
+dim 2        0.2                   29.7                              67.3
+dim 3        0.1                   12.6                              79.9</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ca, <span class="at">title =</span> <span class="st">"CATA - correspondence analysis"</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -838,13 +833,13 @@ dim 3        0.1                   13.8                              80.6</code>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>rv[<span class="fu">c</span>(<span class="st">"rv"</span>, <span class="st">"rvstd"</span>, <span class="st">"p.value"</span>)]</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$rv
-[1] 0.9498434
+[1] 0.9450374
 
 $rvstd
-[1] 5.194065
+[1] 5.173614
 
 $p.value
-[1] 0.0001533381</code></pre>
+[1] 0.0001631228</code></pre>
 </div>
 </div>
 </section>
@@ -904,13 +899,13 @@ character(0)</code></pre>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">CATA    =</span> <span class="st">`</span><span class="at">How easy was the checklist (CATA) task?</span><span class="st">`</span>)</span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ease[, <span class="fu">c</span>(<span class="st">"Sorting"</span>, <span class="st">"CATA"</span>)])</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sorting          CATA     
- Min.   :2.00   Min.   :2.00  
- 1st Qu.:4.00   1st Qu.:3.00  
- Median :5.00   Median :4.00  
- Mean   :4.84   Mean   :4.24  
- 3rd Qu.:6.00   3rd Qu.:5.00  
- Max.   :7.00   Max.   :7.00  </code></pre>
+<pre><code>    Sorting       CATA     
+ Min.   :2   Min.   :2.00  
+ 1st Qu.:4   1st Qu.:4.00  
+ Median :5   Median :5.00  
+ Mean   :5   Mean   :4.72  
+ 3rd Qu.:6   3rd Qu.:6.00  
+ Max.   :7   Max.   :7.00  </code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(ease<span class="sc">$</span>Sorting, ease<span class="sc">$</span>CATA, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Salin ke Papan Klip" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -918,7 +913,7 @@ character(0)</code></pre>
     Wilcoxon signed rank test with continuity correction
 
 data:  ease$Sorting and ease$CATA
-V = 607, p-value = 0.02055
+V = 502, p-value = 0.3507
 alternative hypothesis: true location shift is not equal to 0</code></pre>
 </div>
 </div>
@@ -935,7 +930,7 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <div class="cell-output-display">
 <div data-pagedtable="false">
   <script data-pagedtable-source="" type="application/json">
-{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Sorting"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Product map","2":"MCA","3":"CA"},{"1":"Discriminating CATA terms","2":"-","3":"12"},{"1":"RV between maps (p-value)","2":"0.95 (p = 0.000)","3":""},{"1":"Cluster agreement (ARI)","2":"0.68","3":""},{"1":"Median ease (1-7)","2":"5","3":"4"},{"1":"Vocabulary","2":"spontaneous, needs cleaning","3":"fixed list"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Criterion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Sorting"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CATA"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Product map","2":"MCA","3":"CA"},{"1":"Discriminating CATA terms","2":"-","3":"12"},{"1":"RV between maps (p-value)","2":"0.95 (p = 0.000)","3":""},{"1":"Cluster agreement (ARI)","2":"0.68","3":""},{"1":"Median ease (1-7)","2":"5","3":"5"},{"1":"Vocabulary","2":"spontaneous, needs cleaning","3":"fixed list"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -957,12 +952,6 @@ alternative hypothesis: true location shift is not equal to 0</code></pre>
 <li>CATA is analytic: it can separate products on any listed term, but <strong>only on terms you put in the list</strong>. Check the “only spontaneous” vocabulary: those are attributes your CATA list missed.</li>
 <li>A good practical recommendation is often to use sorting first, to discover the product space and vocabulary, then build the CATA list from the sorting words.</li>
 </ul>
-<p><strong>Questions to discuss in class</strong></p>
-<ol type="1">
-<li>Why can’t we simply average the group numbers across panelists?</li>
-<li>What does it mean if one panelist puts all chips of the same base (tempe, cassava…) together while another groups by flavour (spicy, cheesy…)? How does MCA deal with this?</li>
-<li><em>Extension:</em> in <strong>free multiple sorting</strong> panelists sort the same samples several times using different criteria. How would you add this to the Google Form (hint: repeat the grid question)?</li>
-</ol>
 
 
 </section>
