@@ -1,0 +1,342 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Guideline Skripsi S1",
+    "section": "",
+    "text": "Selamat Datang\nGuideline Skrpsi S1",
+    "crumbs": [
+      "Selamat Datang"
+    ]
+  },
+  {
+    "objectID": "index.html#data-dummy",
+    "href": "index.html#data-dummy",
+    "title": "Guideline Skripsi S1",
+    "section": "Data Dummy",
+    "text": "Data Dummy\nSeluruh file data tersedia di repositori modul ini, di dalam folder assets/data/. Cara termudah mengunduhnya: klik tombol Code di halaman repositori Repositori Praktikum Uji Sensoris, lalu pilih Download ZIP.",
+    "crumbs": [
+      "Selamat Datang"
+    ]
+  },
+  {
+    "objectID": "index.html#cara-menggunakan-modul-ini",
+    "href": "index.html#cara-menggunakan-modul-ini",
+    "title": "Guideline Skripsi S1",
+    "section": "Cara Menggunakan Modul Ini",
+    "text": "Cara Menggunakan Modul Ini\nSetiap bab berisi kode yang bisa langsung disalin dengan mengarahkan kursor ke kotak kode, lalu klik ikon salin di pojok kanan atas. Kerjakan bagian Latihan tanpa melihat contoh terlebih dahulu.",
+    "crumbs": [
+      "Selamat Datang"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "",
+    "text": "2 Research question\nDoes adding intensity ratings (RATA) improve product discrimination enough to justify the extra panelist effort compared with plain CATA?\nSub-questions that each group must answer:\nDesign. Between-subjects: two independent groups of untrained consumers. Group A uses CATA, Group B uses RATA. 8 instant coffees, 12 attributes, ~50 consumers per method. Samples are coded with 3-digit random codes and presented in a balanced order (Williams design) on a printed order sheet.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#cata-citation-frequencies",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#cata-citation-frequencies",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.1 CATA: citation frequencies",
+    "text": "8.1 CATA: citation frequencies\n\ncata_freq &lt;- cata %&gt;% group_by(sample) %&gt;%\n  summarise(across(all_of(attrs), sum)) %&gt;%\n  tibble::column_to_rownames(\"sample\") %&gt;% as.matrix()\ncata_freq\n\n    Bitter Sweet Milky Roasted Burnt Caramel Chocolate Sour Watery Strong\n127     35    14    12      36    16       2         4   33     16     29\n219      9    47    50       9     0      35         9    1      2     15\n356     12    33    34      12     2      12        48    0     19     10\n482     48     0     0      48    38       3        10    2      3     50\n573     14    50    49       8     0      35        18    0      1     12\n641      9    38    34      10     2      10        12    1     48      1\n735     30     7     0      45    10       1        13    9      0     32\n908     11    46    34       9     1      49         9    2      1     13\n    Creamy Artificial\n127     15          0\n219     49          5\n356     25         32\n482      1          0\n573     49          6\n641     12         10\n735      1          1\n908     32         28",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#cata-cochrans-q-test-per-attribute",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#cata-cochrans-q-test-per-attribute",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.2 CATA: Cochran’s Q test per attribute",
+    "text": "8.2 CATA: Cochran’s Q test per attribute\nCochran’s Q tests whether the proportion of panelists ticking an attribute differs across products. It is the CATA equivalent of a one-way repeated-measures ANOVA on binary data.\n\ncochran_q &lt;- function(y, block, treat) {\n  m  &lt;- tapply(y, list(block, treat), sum)          # blocks x treatments, 0/1\n  k  &lt;- ncol(m); Cj &lt;- colSums(m); Ri &lt;- rowSums(m); N &lt;- sum(m)\n  Q  &lt;- (k - 1) * (k * sum(Cj^2) - N^2) / (k * N - sum(Ri^2))\n  c(Q = Q, df = k - 1, p = pchisq(Q, k - 1, lower.tail = FALSE))\n}\n\ncata_q &lt;- t(sapply(attrs, function(a) cochran_q(cata[[a]], cata$panelist, cata$sample)))\ncata_q &lt;- data.frame(attribute = attrs, round(cata_q, 4))\ncata_q$significant &lt;- cata_q$p &lt; 0.05\ncata_q",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#cata-correspondence-analysis",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#cata-correspondence-analysis",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.3 CATA: correspondence analysis",
+    "text": "8.3 CATA: correspondence analysis\nRun CA only on the attributes that discriminate (significant Cochran’s Q).\n\nsig_cata &lt;- cata_q$attribute[cata_q$significant]\nca_cata  &lt;- CA(cata_freq[, sig_cata], graph = FALSE)\nround(ca_cata$eig[1:3, ], 1)\n\n      eigenvalue percentage of variance cumulative percentage of variance\ndim 1        0.5                   58.9                              58.9\ndim 2        0.1                   18.4                              77.4\ndim 3        0.1                   11.1                              88.4\n\nca_rows &lt;- data.frame(ca_cata$row$coord[, 1:2], label = rownames(cata_freq), type = \"Sample\")\nca_cols &lt;- data.frame(ca_cata$col$coord[, 1:2], label = sig_cata,           type = \"Attribute\")\nggplot(rbind(ca_rows, ca_cols), aes(Dim.1, Dim.2, colour = type, label = label)) +\n  geom_hline(yintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_vline(xintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_point() + geom_text_repel(show.legend = FALSE) +\n  labs(title = \"CATA - correspondence analysis\",\n       x = sprintf(\"Dim 1 (%.1f%%)\", ca_cata$eig[1, 2]),\n       y = sprintf(\"Dim 2 (%.1f%%)\", ca_cata$eig[2, 2])) +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#rata-two-way-anova-per-attribute",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#rata-two-way-anova-per-attribute",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.4 RATA: two-way ANOVA per attribute",
+    "text": "8.4 RATA: two-way ANOVA per attribute\nModel per attribute: score ~ sample + panelist (panelist as a block). Then Tukey HSD to count discriminated pairs.\n\nrata_aov &lt;- t(sapply(attrs, function(a) {\n  fit &lt;- aov(as.formula(paste(a, \"~ sample + panelist\")), data = rata)\n  s   &lt;- summary(fit)[[1]]\n  tk  &lt;- TukeyHSD(fit, \"sample\")$sample\n  c(F = s[\"sample\", \"F value\"], p = s[\"sample\", \"Pr(&gt;F)\"],\n    pairs_diff = sum(tk[, \"p adj\"] &lt; 0.05))\n}))\nrata_aov &lt;- data.frame(attribute = attrs, round(rata_aov, 4))\nrata_aov$significant &lt;- rata_aov$p &lt; 0.05\nrata_aov",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#rata-pca-on-product-means",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#rata-pca-on-product-means",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.5 RATA: PCA on product means",
+    "text": "8.5 RATA: PCA on product means\n\nrata_means &lt;- rata %&gt;% group_by(sample) %&gt;%\n  summarise(across(all_of(attrs), mean)) %&gt;%\n  tibble::column_to_rownames(\"sample\") %&gt;% as.matrix()\nsig_rata &lt;- rata_aov$attribute[rata_aov$significant]\npca_rata &lt;- PCA(rata_means[, sig_rata], scale.unit = TRUE, graph = FALSE)\nround(pca_rata$eig[1:3, ], 1)\n\n       eigenvalue percentage of variance cumulative percentage of variance\ncomp 1        7.4                   61.8                              61.8\ncomp 2        1.7                   14.0                              75.7\ncomp 3        1.4                   11.7                              87.5\n\nplot(pca_rata, choix = \"ind\", title = \"RATA - PCA, products\")\n\n\n\n\n\n\n\nplot(pca_rata, choix = \"var\", title = \"RATA - PCA, attributes\")",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P1_CATA_vs_RATA_instant_coffee.html#comparing-the-two-methods",
+    "href": "P1_CATA_vs_RATA_instant_coffee.html#comparing-the-two-methods",
+    "title": "1  Project 1 — CATA vs. RATA on instant coffee",
+    "section": "8.6 Comparing the two methods",
+    "text": "8.6 Comparing the two methods\n\n8.6.1 Similarity of the product maps: RV coefficient\nBoth maps must have the products in the same row order.\n\nX &lt;- ca_cata$row$coord[codes, 1:2]\nY &lt;- pca_rata$ind$coord[codes, 1:2]\nrv &lt;- coeffRV(X, Y)\nrv[c(\"rv\", \"rvstd\", \"p.value\")]\n\n$rv\n[1] 0.9732332\n\n$rvstd\n[1] 4.642742\n\n$p.value\n[1] 0.001897516\n\n\n\n\n8.6.2 Discrimination: how many product pairs does each method separate?\nFor CATA, a pair of products is “discriminated” on an attribute if McNemar’s test is significant. For RATA, we already have Tukey HSD.\n\npairs &lt;- combn(levels(cata$sample), 2)\ncata_pairs &lt;- sapply(sig_cata, function(a) {\n  sum(apply(pairs, 2, function(pr) {\n    x &lt;- cata[cata$sample == pr[1], c(\"panelist\", a)]\n    y &lt;- cata[cata$sample == pr[2], c(\"panelist\", a)]\n    m &lt;- merge(x, y, by = \"panelist\")\n    tab &lt;- table(factor(m[[2]], 0:1), factor(m[[3]], 0:1))\n    if (tab[1, 2] + tab[2, 1] == 0) return(FALSE)\n    mcnemar.test(tab)$p.value &lt; 0.05\n  }))\n})\ndata.frame(attribute = attrs,\n           CATA_pairs = ifelse(attrs %in% sig_cata, cata_pairs[attrs], 0),\n           RATA_pairs = rata_aov$pairs_diff)\n\n\n  \n\n\n\nLook in particular at the near-duplicate pair 219 vs. 573: neither method should separate them strongly. If one method does, it may be picking up noise.\n\n\n8.6.3 Completion time\n\ndur &lt;- function(df) df %&gt;% group_by(`Panelist ID`) %&gt;%\n  summarise(minutes = as.numeric(difftime(max(Timestamp), min(Timestamp), units = \"mins\")))\ntiming &lt;- bind_rows(mutate(dur(cata_raw), method = \"CATA\"),\n                    mutate(dur(rata_raw), method = \"RATA\"))\ntiming %&gt;% group_by(method) %&gt;% summarise(mean_min = mean(minutes), sd = sd(minutes))\n\n\n  \n\n\nt.test(minutes ~ method, data = timing)   # independent groups (between-subjects design)\n\n\n    Welch Two Sample t-test\n\ndata:  minutes by method\nt = -33.547, df = 88.639, p-value &lt; 2.2e-16\nalternative hypothesis: true difference in means between group CATA and group RATA is not equal to 0\n95 percent confidence interval:\n -4.873180 -4.328154\nsample estimates:\nmean in group CATA mean in group RATA \n          7.034333          11.635000 \n\nggplot(timing, aes(method, minutes)) + geom_boxplot() + geom_jitter(width = .1, alpha = .4) +\n  labs(title = \"Time to evaluate all 8 samples\", y = \"Minutes (first to last submission)\") +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n8.6.4 Summary table for the poster\n\ndata.frame(\n  Criterion = c(\"Discriminating attributes (p &lt; 0.05)\",\n                \"Variance explained, Dim 1 + 2 (%)\",\n                \"Discriminated product pairs (sum over attributes)\",\n                \"Mean completion time (min)\",\n                \"RV between maps (p-value)\"),\n  CATA = c(length(sig_cata),\n           round(ca_cata$eig[2, 3], 1),\n           sum(cata_pairs),\n           round(mean(timing$minutes[timing$method == \"CATA\"]), 1),\n           sprintf(\"%.2f (p = %.3f)\", rv$rv, rv$p.value)),\n  RATA = c(length(sig_rata),\n           round(pca_rata$eig[2, 3], 1),\n           sum(rata_aov$pairs_diff),\n           round(mean(timing$minutes[timing$method == \"RATA\"]), 1),\n           \"\"))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Project 1 — CATA vs. RATA on instant coffee</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "",
+    "text": "3 Research question\nDoes rating samples against fixed reference poles (PSP) give a product map similar to free placement on a sheet (Napping)?\nSub-questions:\nDesign. Within-subjects: the same ~40 untrained consumers do both methods, in counterbalanced order (half Napping first, half PSP first), with a break in between. 10 ready-to-drink teas, 3-digit codes. For PSP, 3 of the 10 teas are served as labelled poles (Pole A, B, C); all 10 teas, including the 3 pole teas, are also served blind as test samples.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#napping-form-one-response-per-panelist",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#napping-form-one-response-per-panelist",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "5.1 Napping form (one response per panelist)",
+    "text": "5.1 Napping form (one response per panelist)\nPanelists place all 10 cups on an A3 sheet (42 × 29.7 cm): similar teas close together, different teas far apart. They then measure each cup’s position with a ruler from the bottom-left corner and type it in.\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nOrder (Napping first / PSP first)\nMultiple choice\nFor checking order effects\n\n\n3-22\nSample 274 - X (cm), Sample 274 - Y (cm), …\nShort answer\nValidation: number between 0 and 42 (X) / 0 and 29.7 (Y)\n\n\n23-32\nSample 274 - words …\nShort answer\n“Describe this tea in a few words, separated by commas”\n\n\n33\nHow easy was this task?\nLinear scale 1-7\n1 = very difficult, 7 = very easy\n\n\n\nTip: also ask panelists to photograph their sheet and upload it (File upload question) — useful for checking typos in the coordinates.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#psp-form-one-response-per-test-sample",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#psp-form-one-response-per-test-sample",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "5.2 PSP form (one response per test sample)",
+    "text": "5.2 PSP form (one response per test sample)\nThe 3 poles are on the table, labelled A, B and C, throughout. For each blind sample:\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nSample code\nDropdown\n10 codes\n\n\n3\nHow different is this sample from Pole A?\nLinear scale 0-10\n0 = identical, 10 = totally different\n\n\n4\nHow different is this sample from Pole B?\nLinear scale 0-10\n\n\n\n5\nHow different is this sample from Pole C?\nLinear scale 0-10\n\n\n\n\nAdd a final section (or a 1-question form) for How easy was the PSP task? (1-7).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#napping-multiple-factor-analysis-mfa",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#napping-multiple-factor-analysis-mfa",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "9.1 Napping: multiple factor analysis (MFA)",
+    "text": "9.1 Napping: multiple factor analysis (MFA)\nEach panelist is a group of 2 unstandardised continuous variables (type = \"c\"). MFA balances the panelists so that nobody dominates because they used a larger part of the sheet.\n\nn_pan &lt;- ncol(nap_mat) / 2\nmfa &lt;- MFA(nap_mat, group = rep(2, n_pan), type = rep(\"c\", n_pan),\n           name.group = paste0(\"P\", 1:n_pan), graph = FALSE)\nround(mfa$eig[1:4, ], 1)\n\n       eigenvalue percentage of variance cumulative percentage of variance\ncomp 1       31.0                   58.0                              58.0\ncomp 2       12.6                   23.5                              81.5\ncomp 3        2.0                    3.8                              85.3\ncomp 4        1.8                    3.3                              88.6\n\n\nPlacing the words on the map. Each word is placed at the weighted average position of the teas it was used for (weights = how often it was cited for each tea). A word used only for the jasmine teas sits among the jasmine teas; a word used for many different teas ends up near the centre, which tells you it does not discriminate.\n\nprod_xy  &lt;- mfa$ind$coord[rownames(word_tab), 1:2]\nword_xy  &lt;- t(as.matrix(word_tab)) %*% prod_xy / colSums(word_tab)\nword_coord &lt;- data.frame(word_xy, word = colnames(word_tab), n = colSums(word_tab))\nword_coord[order(-word_coord$n), ]\n\n\n  \n\n\n\n\nnap_coord &lt;- data.frame(mfa$ind$coord[, 1:2], code = rownames(nap_mat))\nggplot() +\n  geom_hline(yintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_vline(xintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_point(data = nap_coord, aes(Dim.1, Dim.2), size = 3) +\n  geom_text_repel(data = nap_coord, aes(Dim.1, Dim.2, label = code)) +\n  geom_text_repel(data = word_coord, aes(Dim.1, Dim.2, label = word, size = n),\n                  max.overlaps = Inf, colour = \"steelblue\", fontface = \"italic\",\n                  show.legend = FALSE) +\n  scale_size(range = c(3, 5)) +\n  labs(title = \"Napping - MFA product map with descriptors\",\n       subtitle = \"Words placed at the weighted average of the teas they describe; larger = cited more often\",\n       x = sprintf(\"Dim 1 (%.1f%%)\", mfa$eig[1, 2]),\n       y = sprintf(\"Dim 2 (%.1f%%)\", mfa$eig[2, 2])) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nPanelist plot — panelists close to the Dim 1 axis separated teas mainly on Dim 1, and so on. Panelists near the origin did not reproduce the consensus.\n\nplot(mfa, choix = \"group\", title = \"Napping - panelists (groups)\")",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#psp-validity-check-with-the-blind-poles",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#psp-validity-check-with-the-blind-poles",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "9.2 PSP: validity check with the blind poles",
+    "text": "9.2 PSP: validity check with the blind poles\nWhen a pole tea is served blind, panelists should rate it close to 0 against its own pole.\n\npsp &lt;- psp_raw %&gt;%\n  rename(panelist = `Panelist ID`, code = `Sample code`,\n         A = `How different is this sample from Pole A?`,\n         B = `How different is this sample from Pole B?`,\n         C = `How different is this sample from Pole C?`)\npoles &lt;- c(A = \"274\", B = \"605\", C = \"721\")       # replace with your pole codes\n\npsp %&gt;% filter(code %in% poles) %&gt;%\n  group_by(code) %&gt;% summarise(across(c(A, B, C), mean)) %&gt;%\n  mutate(own_pole = names(poles)[match(code, poles)])",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#psp-product-map",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#psp-product-map",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "9.3 PSP: product map",
+    "text": "9.3 PSP: product map\nEach panelist describes each product by its 3 distances to the poles. As in Napping, we build a product × (panelist × pole) matrix and run MFA with each panelist as a group of 3 variables. This keeps the two analyses parallel.\n\npsp_mat &lt;- psp %&gt;%\n  pivot_longer(c(A, B, C), names_to = \"pole\", values_to = \"d\") %&gt;%\n  mutate(col = paste0(\"P\", panelist, \"_\", pole)) %&gt;%\n  select(code, col, d) %&gt;%\n  pivot_wider(names_from = col, values_from = d) %&gt;%\n  arrange(code) %&gt;% tibble::column_to_rownames(\"code\")\n\nn_psp &lt;- ncol(psp_mat) / 3\nmfa_psp &lt;- MFA(psp_mat, group = rep(3, n_psp), type = rep(\"c\", n_psp),\n               name.group = paste0(\"P\", 1:n_psp), graph = FALSE)\nround(mfa_psp$eig[1:3, ], 1)\n\n       eigenvalue percentage of variance cumulative percentage of variance\ncomp 1       37.3                   59.7                              59.7\ncomp 2       17.6                   28.1                              87.8\ncomp 3        2.6                    4.2                              92.0\n\npsp_coord &lt;- data.frame(mfa_psp$ind$coord[, 1:2], code = rownames(psp_mat),\n                        pole = ifelse(rownames(psp_mat) %in% poles, \"pole\", \"test\"))\nggplot(psp_coord, aes(Dim.1, Dim.2, label = code, colour = pole)) +\n  geom_hline(yintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_vline(xintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_point(size = 3) + geom_text_repel(show.legend = FALSE) +\n  labs(title = \"PSP - MFA product map\",\n       x = sprintf(\"Dim 1 (%.1f%%)\", mfa_psp$eig[1, 2]),\n       y = sprintf(\"Dim 2 (%.1f%%)\", mfa_psp$eig[2, 2])) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nAlternative used in Teillet et al. (2010): average the PSP ratings to a product × pole table and run a PCA, or compute product-to-product distances and use classical MDS (cmdscale()). Try one and check that the map is similar.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P2_Napping_vs_PSP_RTD_tea.html#comparing-the-two-methods",
+    "href": "P2_Napping_vs_PSP_RTD_tea.html#comparing-the-two-methods",
+    "title": "2  Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas",
+    "section": "9.4 Comparing the two methods",
+    "text": "9.4 Comparing the two methods\n\n9.4.1 RV coefficient between the maps\n\nX  &lt;- mfa$ind$coord[codes, 1:2]\nY  &lt;- mfa_psp$ind$coord[codes, 1:2]\nrv &lt;- coeffRV(X, Y)\nrv[c(\"rv\", \"rvstd\", \"p.value\")]\n\n$rv\n[1] 0.9811785\n\n$rvstd\n[1] 6.203801\n\n$p.value\n[1] 0.0001235318\n\n\n\n\n9.4.2 Procrustes: superimpose the two maps\nThe PSP map is rotated, scaled and (if needed) mirrored to best match the Napping map. Long arrows = teas positioned differently by the two methods.\n\nprocrustes &lt;- function(X, Y) {                    # rotate/scale Y onto X\n  Xc &lt;- scale(X, scale = FALSE); Yc &lt;- scale(Y, scale = FALSE)\n  s  &lt;- svd(t(Yc) %*% Xc); R &lt;- s$u %*% t(s$v)\n  b  &lt;- sum(s$d) / sum(Yc^2)\n  b * Yc %*% R\n}\nXc &lt;- scale(X, scale = FALSE)\nYp &lt;- procrustes(X, Y)\ndf &lt;- data.frame(code = codes, xn = Xc[, 1], yn = Xc[, 2], xp = Yp[, 1], yp = Yp[, 2])\nggplot(df) +\n  geom_segment(aes(xn, yn, xend = xp, yend = yp), colour = \"grey50\",\n               arrow = arrow(length = unit(.15, \"cm\"))) +\n  geom_point(aes(xn, yn, colour = \"Napping\"), size = 3) +\n  geom_point(aes(xp, yp, colour = \"PSP (rotated)\"), size = 3) +\n  geom_text_repel(aes(xn, yn, label = code)) +\n  labs(title = \"Procrustes overlay of Napping and PSP maps\", x = \"Dim 1\", y = \"Dim 2\",\n       colour = NULL) + theme_minimal()\n\n\n\n\n\n\n\n\n\n\n9.4.3 Ease and time\n\nease &lt;- napping_raw %&gt;% select(panelist = `Panelist ID`, Napping = `How easy was this task?`) %&gt;%\n  inner_join(psp_ease %&gt;% select(panelist = `Panelist ID`, PSP = `How easy was the PSP task?`),\n             by = \"panelist\")\nsummary(ease[, c(\"Napping\", \"PSP\")])\n\n    Napping         PSP       \n Min.   :2.0   Min.   :3.000  \n 1st Qu.:4.0   1st Qu.:4.000  \n Median :4.0   Median :5.000  \n Mean   :4.4   Mean   :5.125  \n 3rd Qu.:5.0   3rd Qu.:6.000  \n Max.   :7.0   Max.   :7.000  \n\nwilcox.test(ease$Napping, ease$PSP, paired = TRUE)    # same panelists -&gt; paired test\n\n\n    Wilcoxon signed rank exact test\n\ndata:  ease$Napping and ease$PSP\nV = 209, p-value = 0.0176\nalternative hypothesis: true location shift is not equal to 0\n\npsp_time &lt;- psp_raw %&gt;% group_by(`Panelist ID`) %&gt;%\n  summarise(PSP_min = as.numeric(difftime(max(Timestamp), min(Timestamp), units = \"mins\")))\nsummary(psp_time$PSP_min)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  6.167   6.438   6.792   6.863   7.217   8.183 \n\n\nFor Napping there is only one submission per panelist, so the form cannot time it. Write the start time on each panelist’s sheet (or add a “start time” short-answer question) if you want to compare durations.\n\n\n9.4.4 Summary table for the poster\n\ndata.frame(\n  Criterion = c(\"Variance explained, Dim 1 + 2 (%)\",\n                \"RV between maps (p-value)\",\n                \"Median ease rating (1-7)\",\n                \"Words collected\"),\n  Napping = c(round(mfa$eig[2, 3], 1),\n              sprintf(\"%.2f (p = %.3f)\", rv$rv, rv$p.value),\n              median(ease$Napping),\n              \"yes, free description\"),\n  PSP = c(round(mfa_psp$eig[2, 3], 1), \"\",\n          median(ease$PSP), \"no\"))",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "",
+    "text": "4 Research question\nDoes a holistic method (free sorting) reveal the same product groupings as an attribute-based method (CATA), and which method do consumers find easier?\nSub-questions:\nDesign. Within-subjects, counterbalanced: the same ~50 untrained consumers do both tasks in one session (half sort first, half CATA first), with a break and fresh samples in between. 9 chips (e.g., keripik tempe, cassava, potato and banana chips in several flavours), 3-digit codes.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#form-1-sorting-one-response-per-panelist",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#form-1-sorting-one-response-per-panelist",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "6.1 Form 1 — Sorting (one response per panelist)",
+    "text": "6.1 Form 1 — Sorting (one response per panelist)\nPanelists taste all 9 samples and group them on the table: similar samples together. At least 2 groups, at most 8 (not all in one group, not each sample alone).\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nOrder\nMultiple choice\nSorting first / CATA first\n\n\n3\nWhich group did you put each sample in?\nMultiple-choice grid\nRows = 9 sample codes. Columns = Group 1 … Group 8. Require a response in each row\n\n\n4-11\nDescribe Group 1 in a few words … Describe Group 8 in a few words\nShort answer\nNot required (leave unused groups blank). Ask for words separated by commas\n\n\n\nThe group numbers are only labels: “Group 1” for one panelist has nothing to do with “Group 1” for another. The analysis handles this.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#form-2-cata-one-response-per-sample",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#form-2-cata-one-response-per-sample",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "6.2 Form 2 — CATA (one response per sample)",
+    "text": "6.2 Form 2 — CATA (one response per sample)\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nSample code\nDropdown\n9 codes\n\n\n3\nWhich of these terms describe this sample?\nCheckboxes\n12 terms, Shuffle option order\n\n\n\nCATA terms: Crunchy, Hard, Oily, Salty, Spicy, Sweet, Savoury, Beany, Garlic, Cheesy, Starchy, Burnt.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#form-3-feedback-one-response-per-panelist-end-of-session",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#form-3-feedback-one-response-per-panelist-end-of-session",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "6.3 Form 3 — Feedback (one response per panelist, end of session)",
+    "text": "6.3 Form 3 — Feedback (one response per panelist, end of session)\n\n\n\n#\nQuestion\nType\n\n\n\n\n1\nPanelist ID\nShort answer\n\n\n2\nHow easy was the sorting task?\nLinear scale 1-7\n\n\n3\nHow easy was the checklist (CATA) task?\nLinear scale 1-7",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#sorting-multiple-correspondence-analysis-mca",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#sorting-multiple-correspondence-analysis-mca",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "10.1 Sorting: multiple correspondence analysis (MCA)",
+    "text": "10.1 Sorting: multiple correspondence analysis (MCA)\nTreating each panelist’s partition as a categorical variable and running MCA is the approach of the fast() function in SensoMineR.\n\nmca &lt;- MCA(sort_mat, graph = FALSE)\nround(mca$eig[1:4, ], 1)\n\n      eigenvalue percentage of variance cumulative percentage of variance\ndim 1        0.7                   30.6                              30.6\ndim 2        0.6                   24.4                              55.0\ndim 3        0.3                   11.4                              66.4\ndim 4        0.3                   10.9                              77.2\n\n\nEach word is placed at the weighted average position of the products it was used for (weights = number of citations). Words used for one type of chip sit next to those chips; words used for many chips end up near the centre.\n\nsort_coord &lt;- data.frame(mca$ind$coord[, 1:2], code = codes)\nword_xy    &lt;- t(as.matrix(sort_words)) %*% mca$ind$coord[rownames(sort_words), 1:2] /\n              colSums(sort_words)\nword_coord &lt;- data.frame(word_xy, word = colnames(sort_words), n = colSums(sort_words),\n                         in_cata = colnames(sort_words) %in% tolower(terms))\n\nggplot() +\n  geom_hline(yintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_vline(xintercept = 0, lty = 2, colour = \"grey60\") +\n  geom_point(data = sort_coord, aes(Dim.1, Dim.2), size = 3) +\n  geom_text_repel(data = sort_coord, aes(Dim.1, Dim.2, label = code), fontface = \"bold\") +\n  geom_text_repel(data = word_coord, aes(Dim.1, Dim.2, label = word, size = n, colour = in_cata),\n                  fontface = \"italic\", max.overlaps = Inf) +\n  scale_size(range = c(3, 5), guide = \"none\") +\n  scale_colour_manual(values = c(`TRUE` = \"steelblue\", `FALSE` = \"darkorange\"),\n                      labels = c(`TRUE` = \"in CATA list\", `FALSE` = \"not in CATA list\"),\n                      name = NULL) +\n  labs(title = \"Free sorting - MCA product map with group descriptors\",\n       subtitle = \"Words placed at the weighted average of the products they describe\",\n       x = sprintf(\"Dim 1 (%.1f%%)\", mca$eig[1, 2]),\n       y = sprintf(\"Dim 2 (%.1f%%)\", mca$eig[2, 2])) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nNote: in MCA the % of variance is always low (many dimensions). Judge the map by whether it makes sense, not by the %. If SensoMineR is installed, SensoMineR::fast(sort_mat) gives an equivalent analysis; DistatisR offers DISTATIS as an alternative.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#sorting-clusters-of-products",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#sorting-clusters-of-products",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "10.2 Sorting: clusters of products",
+    "text": "10.2 Sorting: clusters of products\n\nhc_sort &lt;- hclust(dist(mca$ind$coord[, 1:3]), method = \"ward.D2\")\nplot(hc_sort, main = \"Sorting - hierarchical clustering on MCA coordinates\", xlab = \"\", sub = \"\")\n\n\n\n\n\n\n\nsort_clusters &lt;- cutree(hc_sort, k = 4)\nsort_clusters\n\n137 274 349 356 492 605 721 813 958 \n  1   2   3   2   4   4   1   2   1",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#cata-cochrans-q-and-correspondence-analysis",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#cata-cochrans-q-and-correspondence-analysis",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "10.3 CATA: Cochran’s Q and correspondence analysis",
+    "text": "10.3 CATA: Cochran’s Q and correspondence analysis\n\ncochran_q &lt;- function(y, block, treat) {\n  m  &lt;- tapply(y, list(block, treat), sum)\n  k  &lt;- ncol(m); Cj &lt;- colSums(m); Ri &lt;- rowSums(m); N &lt;- sum(m)\n  Q  &lt;- (k - 1) * (k * sum(Cj^2) - N^2) / (k * N - sum(Ri^2))\n  c(Q = Q, p = pchisq(Q, k - 1, lower.tail = FALSE))\n}\ncata_q &lt;- data.frame(term = terms,\n                     t(sapply(terms, function(a) cochran_q(cata[[a]], cata$panelist, cata$sample))))\ncata_q$significant &lt;- cata_q$p &lt; 0.05\ncata_q\n\n\n  \n\n\ncata_freq &lt;- cata %&gt;% group_by(sample) %&gt;% summarise(across(all_of(terms), sum)) %&gt;%\n  tibble::column_to_rownames(\"sample\") %&gt;% as.matrix()\nsig &lt;- cata_q$term[cata_q$significant]\nca  &lt;- CA(cata_freq[, sig], graph = FALSE)\nround(ca$eig[1:3, ], 1)\n\n      eigenvalue percentage of variance cumulative percentage of variance\ndim 1        0.3                   38.2                              38.2\ndim 2        0.2                   28.6                              66.8\ndim 3        0.1                   13.8                              80.6\n\nplot(ca, title = \"CATA - correspondence analysis\")\n\n\n\n\n\n\n\n\n\nhc_cata &lt;- hclust(dist(ca$row$coord[codes, 1:3]), method = \"ward.D2\")\ncata_clusters &lt;- cutree(hc_cata, k = 4)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P3_Sorting_vs_CATA_snack_chips.html#comparing-the-two-methods",
+    "href": "P3_Sorting_vs_CATA_snack_chips.html#comparing-the-two-methods",
+    "title": "3  Project 3 — Free sorting vs. CATA on snack chips",
+    "section": "10.4 Comparing the two methods",
+    "text": "10.4 Comparing the two methods\n\n10.4.1 RV coefficient between the maps\n\nX  &lt;- mca$ind$coord[codes, 1:2]\nY  &lt;- ca$row$coord[codes, 1:2]\nrv &lt;- coeffRV(X, Y)\nrv[c(\"rv\", \"rvstd\", \"p.value\")]\n\n$rv\n[1] 0.9498434\n\n$rvstd\n[1] 5.194065\n\n$p.value\n[1] 0.0001533381\n\n\n\n\n10.4.2 Do the clusters agree?\nCross-tabulate the clusters from both methods. The adjusted Rand index (ARI) summarises agreement between two partitions: 1 = identical, 0 = no better than chance.\n\ntable(sorting = sort_clusters, CATA = cata_clusters[names(sort_clusters)])\n\n       CATA\nsorting 1 2 3 4\n      1 3 0 0 0\n      2 0 3 0 0\n      3 0 0 1 0\n      4 1 0 0 1\n\nari &lt;- function(a, b) {\n  tab &lt;- table(a, b); n &lt;- sum(tab)\n  sc  &lt;- sum(choose(tab, 2)); sa &lt;- sum(choose(rowSums(tab), 2)); sb &lt;- sum(choose(colSums(tab), 2))\n  exp &lt;- sa * sb / choose(n, 2)\n  (sc - exp) / ((sa + sb) / 2 - exp)\n}\nARI &lt;- ari(sort_clusters, cata_clusters[names(sort_clusters)])\nARI\n\n[1] 0.68\n\n\n\n\n10.4.3 Spontaneous vs. fixed vocabulary\nWhich terms did consumers come up with themselves? Which CATA terms were never used spontaneously?\n\nspont &lt;- colSums(sort_words)\nlist(\n  in_both            = intersect(names(spont), tolower(terms)),\n  only_spontaneous   = setdiff(names(spont), tolower(terms)),\n  only_in_CATA_list  = setdiff(tolower(terms), names(spont)))\n\n$in_both\n [1] \"beany\"   \"burnt\"   \"cheesy\"  \"crunchy\" \"garlic\"  \"hard\"    \"oily\"   \n [8] \"salty\"   \"savoury\" \"spicy\"   \"starchy\" \"sweet\"  \n\n$only_spontaneous\n[1] \"artificial\" \"banana\"     \"homemade\"   \"thick\"     \n\n$only_in_CATA_list\ncharacter(0)\n\n\n\n\n10.4.4 Ease\n\nease &lt;- feedback_raw %&gt;%\n  rename(Sorting = `How easy was the sorting task?`,\n         CATA    = `How easy was the checklist (CATA) task?`)\nsummary(ease[, c(\"Sorting\", \"CATA\")])\n\n    Sorting          CATA     \n Min.   :2.00   Min.   :2.00  \n 1st Qu.:4.00   1st Qu.:3.00  \n Median :5.00   Median :4.00  \n Mean   :4.84   Mean   :4.24  \n 3rd Qu.:6.00   3rd Qu.:5.00  \n Max.   :7.00   Max.   :7.00  \n\nwilcox.test(ease$Sorting, ease$CATA, paired = TRUE)\n\n\n    Wilcoxon signed rank test with continuity correction\n\ndata:  ease$Sorting and ease$CATA\nV = 607, p-value = 0.02055\nalternative hypothesis: true location shift is not equal to 0\n\n\n\n\n10.4.5 Summary table for the poster\n\ndata.frame(\n  Criterion = c(\"Product map\", \"Discriminating CATA terms\", \"RV between maps (p-value)\",\n                \"Cluster agreement (ARI)\", \"Median ease (1-7)\", \"Vocabulary\"),\n  Sorting = c(\"MCA\", \"-\", sprintf(\"%.2f (p = %.3f)\", rv$rv, rv$p.value),\n              round(ARI, 2), median(ease$Sorting), \"spontaneous, needs cleaning\"),\n  CATA    = c(\"CA\", length(sig), \"\", \"\", median(ease$CATA), \"fixed list\"))",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Project 3 — Free sorting vs. CATA on snack chips</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "",
+    "text": "5 Research question\nWhich diagnostic method gives clearer and more actionable guidance for reformulating a product: Just-About-Right (JAR) scales with penalty analysis, or CATA with an “ideal product” question?\nSub-questions:\nDesign. Between-subjects, because answering JAR questions can change how people answer CATA (and vice versa):\n6 sweetened iced teas made in the lab: 3 sugar levels (low / medium / high) × 2 tea strengths (weak / strong), 3-digit codes, balanced presentation order.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#form-a-liking-jar",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#form-a-liking-jar",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "7.1 Form A — Liking + JAR",
+    "text": "7.1 Form A — Liking + JAR\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nSample code\nDropdown\n6 codes\n\n\n3\nHow much do you like this iced tea overall?\nLinear scale 1-9\n1 = Dislike extremely, 9 = Like extremely\n\n\n4\nHow is the … of this sample?\nMultiple-choice grid\nRows: Sweetness, Tea flavour, Bitterness. Columns: 1 Much too low, 2 Somewhat too low, 3 Just about right, 4 Somewhat too high, 5 Much too high\n\n\n\nAsk liking before JAR so the JAR questions do not influence liking.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#form-b-liking-cata-ideal",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#form-b-liking-cata-ideal",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "7.2 Form B — Liking + CATA + ideal",
+    "text": "7.2 Form B — Liking + CATA + ideal\n\n\n\n\n\n\n\n\n\n#\nQuestion\nType\nNotes\n\n\n\n\n1\nPanelist ID\nShort answer\nNumber\n\n\n2\nSample code\nDropdown\n6 codes + IDEAL\n\n\n3\nHow much do you like this iced tea overall?\nLinear scale 1-9\nNot required (left blank for IDEAL)\n\n\n4\nWhich of these terms describe this sample?\nCheckboxes\n12 terms, Shuffle option order\n\n\n\nAfter the 6 samples, panelists submit one more response with Sample code = IDEAL and tick the terms that describe their ideal iced tea.\nCATA terms: Sweet, Syrupy, Bitter, Astringent, Strong tea flavour, Watery, Refreshing, Floral, Smoky, Sour, Lingering aftertaste, Fresh tea aroma.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#liking-are-the-two-groups-comparable",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#liking-are-the-two-groups-comparable",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.1 Liking: are the two groups comparable?",
+    "text": "11.1 Liking: are the two groups comparable?\n\nliking_all &lt;- bind_rows(jarA %&gt;% transmute(panelist, sample, liking, group = \"A (JAR)\"),\n                        prodB %&gt;% transmute(panelist, sample, liking, group = \"B (CATA)\"))\nliking_all %&gt;% group_by(group, sample) %&gt;% summarise(mean = mean(liking), .groups = \"drop\") %&gt;%\n  pivot_wider(names_from = group, values_from = mean)\n\n\n  \n\n\nfit &lt;- aov(liking ~ sample * group + Error(factor(panelist)), data = liking_all)\nsummary(fit)   # a significant sample:group interaction would mean the method biased liking\n\n\nError: factor(panelist)\n           Df Sum Sq Mean Sq F value Pr(&gt;F)  \ngroup       1    7.4   7.401   3.713 0.0564 .\nResiduals 118  235.2   1.993                 \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nError: Within\n              Df Sum Sq Mean Sq F value Pr(&gt;F)    \nsample         5  320.3   64.06  37.059 &lt;2e-16 ***\nsample:group   5   12.0    2.39   1.385  0.228    \nResiduals    590 1019.9    1.73                   \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nliking_all %&gt;% group_by(group, sample) %&gt;%\n  summarise(m = mean(liking), se = sd(liking) / sqrt(n()), .groups = \"drop\") %&gt;%\n  ggplot(aes(sample, m, fill = group)) +\n  geom_col(position = position_dodge(.8), width = .7) +\n  geom_errorbar(aes(ymin = m - se, ymax = m + se), position = position_dodge(.8), width = .2) +\n  labs(title = \"Mean liking (+/- SE) per sample and group\", y = \"Liking (1-9)\", x = \"Sample\") +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#jar-distribution-of-responses",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#jar-distribution-of-responses",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.2 JAR: distribution of responses",
+    "text": "11.2 JAR: distribution of responses\n\njar_long %&gt;%\n  mutate(category = factor(category, levels = c(\"Too low\", \"JAR\", \"Too high\"))) %&gt;%\n  count(sample, attribute, category) %&gt;%\n  group_by(sample, attribute) %&gt;% mutate(pct = 100 * n / sum(n)) %&gt;%\n  ggplot(aes(sample, pct, fill = category)) + geom_col() +\n  facet_wrap(~attribute) +\n  scale_fill_manual(values = c(\"Too low\" = \"#4C78A8\", JAR = \"grey80\", \"Too high\" = \"#E45756\")) +\n  labs(title = \"JAR responses per sample\", y = \"% of consumers\", x = \"Sample\", fill = NULL) +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#jar-penalty-analysis",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#jar-penalty-analysis",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.3 JAR: penalty analysis",
+    "text": "11.3 JAR: penalty analysis\nFor each sample × attribute:\n\n% of consumers in the Too low and Too high groups;\nmean drop = mean liking of the JAR group − mean liking of the Too low (or Too high) group;\nweighted penalty = mean drop × proportion.\n\nCommon decision rule: a problem is actionable when ≥ 20% of consumers are in the non-JAR group and the mean drop is ≥ 1 point on the 9-point scale.\n\npenalty &lt;- jar_long %&gt;%\n  group_by(sample, attribute) %&gt;%\n  mutate(jar_mean = mean(liking[category == \"JAR\"]), n_total = n()) %&gt;%\n  filter(category != \"JAR\") %&gt;%\n  group_by(sample, attribute, category) %&gt;%\n  summarise(pct = 100 * n() / first(n_total), n = n(),\n            mean_drop = first(jar_mean) - mean(liking), .groups = \"drop\") %&gt;%\n  mutate(weighted_penalty = mean_drop * pct / 100,\n         actionable = pct &gt;= 20 & mean_drop &gt;= 1 & n &gt;= 5)\npenalty %&gt;% arrange(desc(weighted_penalty)) %&gt;% print(n = 12)\n\n# A tibble: 31 × 8\n   sample attribute   category   pct     n mean_drop weighted_penalty actionable\n   &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;    &lt;dbl&gt; &lt;int&gt;     &lt;dbl&gt;            &lt;dbl&gt; &lt;lgl&gt;     \n 1 274    Sweetness   Too low   90      54     1.46             1.32  TRUE      \n 2 137    Tea flavour Too high  68.3    41     1.12             0.762 TRUE      \n 3 492    Tea flavour Too high  41.7    25     1.32             0.552 TRUE      \n 4 492    Sweetness   Too low   80      48     0.614            0.491 FALSE     \n 5 492    Bitterness  Too high  76.7    46     0.618            0.474 FALSE     \n 6 274    Tea flavour Too low   48.3    29     0.779            0.376 FALSE     \n 7 605    Sweetness   Too low   26.7    16     1.40             0.374 TRUE      \n 8 137    Sweetness   Too high  60      36     0.390            0.234 FALSE     \n 9 813    Sweetness   Too low   33.3    20     0.7              0.233 FALSE     \n10 356    Tea flavour Too low   63.3    38     0.311            0.197 FALSE     \n11 813    Tea flavour Too low   68.3    41     0.241            0.165 FALSE     \n12 137    Bitterness  Too high  80      48     0.188            0.15  FALSE     \n# ℹ 19 more rows\n\n\n\nggplot(penalty, aes(pct, mean_drop, colour = attribute, shape = category)) +\n  annotate(\"rect\", xmin = 20, xmax = Inf, ymin = 1, ymax = Inf, alpha = .08, fill = \"red\") +\n  geom_point(size = 3) +\n  geom_text_repel(aes(label = sample), size = 3, show.legend = FALSE) +\n  geom_vline(xintercept = 20, lty = 2) + geom_hline(yintercept = 1, lty = 2) +\n  labs(title = \"JAR penalty analysis\", subtitle = \"Shaded area = actionable problems\",\n       x = \"% of consumers\", y = \"Mean drop in liking\") +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#cata-ideal-penalty-analysis-ares-et-al.-2014",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#cata-ideal-penalty-analysis-ares-et-al.-2014",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.4 CATA + ideal: penalty analysis (Ares et al., 2014)",
+    "text": "11.4 CATA + ideal: penalty analysis (Ares et al., 2014)\nFor each term, every consumer × sample falls in one of four cells:\n\n\n\n\n\n\n\n\n\nIdeal: yes\nIdeal: no\n\n\n\n\nProduct: yes\nP(yes) I(yes) — OK\nP(yes) I(no) — term present but should not be\n\n\nProduct: no\nP(no) I(yes) — term missing but should be there\nP(no) I(no) — OK\n\n\n\n\n“Must have” penalty = liking[P yes, I yes] − liking[P no, I yes]\n“Must not have” penalty = liking[P no, I no] − liking[P yes, I no]\n\nEach penalty is tested with a t-test. A term matters when the penalty is significant and affects ≥ 20% of consumers.\n\ncata_pen &lt;- bind_rows(lapply(terms, function(a) {\n  d  &lt;- cata_long %&gt;% filter(term == a)\n  ok_yes  &lt;- d$liking[d$product == 1 & d$ideal == 1]\n  miss    &lt;- d$liking[d$product == 0 & d$ideal == 1]\n  ok_no   &lt;- d$liking[d$product == 0 & d$ideal == 0]\n  extra   &lt;- d$liking[d$product == 1 & d$ideal == 0]\n  tt &lt;- function(x, y) if (length(x) &gt; 2 && length(y) &gt; 2) t.test(x, y)$p.value else NA\n  data.frame(term = a,\n             type = c(\"Missing (must have)\", \"Present (must not have)\"),\n             pct  = 100 * c(length(miss), length(extra)) / nrow(d),\n             mean_drop = c(mean(ok_yes) - mean(miss), mean(ok_no) - mean(extra)),\n             p = c(tt(ok_yes, miss), tt(ok_no, extra)))\n}))\ncata_pen &lt;- cata_pen %&gt;%\n  mutate(weighted_penalty = mean_drop * pct / 100,\n         actionable = !is.na(p) & p &lt; 0.05 & pct &gt;= 20)\ncata_pen %&gt;% arrange(desc(weighted_penalty)) %&gt;% mutate(across(where(is.numeric), ~ round(., 3)))\n\n\n  \n\n\n\n\nggplot(cata_pen %&gt;% filter(!is.na(mean_drop)),\n       aes(pct, mean_drop, colour = actionable, shape = type)) +\n  annotate(\"rect\", xmin = 20, xmax = Inf, ymin = 0, ymax = Inf, alpha = .08, fill = \"red\") +\n  geom_hline(yintercept = 0, colour = \"grey60\") + geom_vline(xintercept = 20, lty = 2) +\n  geom_point(size = 3) + geom_text_repel(aes(label = term), size = 3, show.legend = FALSE) +\n  scale_colour_manual(values = c(`TRUE` = \"#E45756\", `FALSE` = \"grey50\")) +\n  labs(title = \"CATA-ideal penalty analysis (all samples pooled)\",\n       x = \"% of consumer x sample cases\", y = \"Mean drop in liking\", shape = NULL) +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#cata-ideal-where-does-each-sample-deviate-from-the-ideal",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#cata-ideal-where-does-each-sample-deviate-from-the-ideal",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.5 CATA + ideal: where does each sample deviate from the ideal?",
+    "text": "11.5 CATA + ideal: where does each sample deviate from the ideal?\nFor the actionable terms, the % of consumers whose description of a sample differs from their ideal tells you which samples to change.\n\nact &lt;- cata_pen %&gt;% filter(actionable)\ncata_by_sample &lt;- cata_long %&gt;%\n  inner_join(act %&gt;% select(term, type), by = \"term\") %&gt;%\n  group_by(sample, term, type) %&gt;%\n  summarise(pct_deviating = 100 * mean(\n              ifelse(type == \"Missing (must have)\", product == 0 & ideal == 1,\n                     product == 1 & ideal == 0)), .groups = \"drop\")\ncata_by_sample %&gt;%\n  mutate(label = paste0(term, ifelse(type == \"Missing (must have)\", \" (missing)\", \" (present)\"))) %&gt;%\n  select(sample, label, pct_deviating) %&gt;%\n  pivot_wider(names_from = label, values_from = pct_deviating) %&gt;%\n  mutate(across(-sample, ~ round(., 0)))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  },
+  {
+    "objectID": "P4_JAR_vs_CATA_ideal_iced_tea.html#comparing-the-two-methods-recommendations-per-sample",
+    "href": "P4_JAR_vs_CATA_ideal_iced_tea.html#comparing-the-two-methods-recommendations-per-sample",
+    "title": "4  Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation",
+    "section": "11.6 Comparing the two methods: recommendations per sample",
+    "text": "11.6 Comparing the two methods: recommendations per sample\n\njar_rec &lt;- penalty %&gt;% filter(actionable) %&gt;%\n  mutate(rec = paste(ifelse(category == \"Too high\", \"reduce\", \"increase\"), tolower(attribute))) %&gt;%\n  group_by(sample) %&gt;% summarise(JAR = paste(rec, collapse = \"; \"))\n\ncata_rec &lt;- cata_by_sample %&gt;% filter(pct_deviating &gt;= 20) %&gt;%\n  mutate(rec = paste0(ifelse(type == \"Missing (must have)\", \"add \", \"remove \"), tolower(term))) %&gt;%\n  group_by(sample) %&gt;% summarise(CATA = paste(rec, collapse = \"; \"))\n\nrecs &lt;- data.frame(sample = sort(unique(jar_long$sample))) %&gt;%\n  left_join(jar_rec, by = \"sample\") %&gt;% left_join(cata_rec, by = \"sample\") %&gt;%\n  mutate(across(c(JAR, CATA), ~ ifelse(is.na(.), \"no change needed\", .)))\nrecs\n\n\n  \n\n\n\n\n11.6.1 Summary table for the poster\n\ndata.frame(\n  Criterion = c(\"Actionable problems found (sample x attribute)\",\n                \"Tells the DIRECTION of change?\",\n                \"Detects attributes not anticipated by the researcher?\",\n                \"Questions per sample\"),\n  JAR  = c(sum(penalty$actionable), \"Yes (too low / too high)\",\n           \"No (only the 3 JAR attributes)\", \"1 liking + 3 JAR\"),\n  CATA = c(nrow(act), \"Indirectly (present vs. absent)\",\n           \"Partly (any of the 12 terms)\", \"1 liking + 12 terms (+ ideal once)\"))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation</span>"
+    ]
+  }
+]
