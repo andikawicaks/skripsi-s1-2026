@@ -1,7 +1,7 @@
 ---
 title: "Project 3 — Free sorting vs. CATA on snack chips"
 subtitle: "Analysis plan (draft) with dummy data"
-author: "Sensory Practicum"
+author: "AWP"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -95,11 +95,13 @@ CATA terms: Crunchy, Hard, Oily, Salty, Spicy, Sweet, Savoury, Beany, Garlic, Ch
 
 # What the exported .xlsx looks like
 
+*Google Forms always adds a **Timestamp** column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).*
+
 **Sorting** — one row per panelist; the grid becomes one column per sample:
 
-| Timestamp | Panelist ID | Order | Which group did you put each sample in? [274] | … [813] | … | Describe Group 1 in a few words | … |
-|---|---|---|---|---|---|---|---|
-| 2026-11-04 13:05:10 | 1 | Sorting first | Group 2 | Group 1 | … | Pedas, gurih dan enak | … |
+| Panelist ID | Order | Which group did you put each sample in? [274] | … [813] | … | Describe Group 1 in a few words | … |
+|---|---|---|---|---|---|---|
+| 1 | Sorting first | Group 2 | Group 1 | … | Pedas, gurih dan enak | … |
 
 **CATA** — same as in Project 1 (one row per panelist × sample, ticked terms comma-separated).
 
@@ -155,7 +157,6 @@ describe_group <- function(centroid) {
   paste(unique(w), collapse = sample(c(", ", ", ", ", ", "; ", " dan "), 1))
 }
 
-start <- as.POSIXct("2026-11-04 13:00:00", tz = "Asia/Jakarta")
 n_pan <- 50
 
 # ---- Sorting ----
@@ -164,7 +165,7 @@ sort_raw <- bind_rows(lapply(1:n_pan, function(p) {
   k    <- sample(2:5, 1, prob = c(1, 3, 3, 2))
   grp  <- kmeans(perc, centers = k, nstart = 10)$cluster
   grp  <- match(grp, unique(grp))                      # relabel 1, 2, 3 ...
-  row  <- data.frame(Timestamp = start + p * 300, `Panelist ID` = p,
+  row  <- data.frame(`Panelist ID` = p,
                      Order = ifelse(p %% 2 == 1, "Sorting first", "CATA first"),
                      check.names = FALSE)
   for (i in seq_along(chips$code))
@@ -183,12 +184,10 @@ sort_raw <- bind_rows(lapply(1:n_pan, function(p) {
 # ---- CATA ----
 cata_rows <- list()
 for (p in 1:n_pan) {
-  t <- start + p * 300 + 1500
   for (cd in sample(chips$code)) {
     latent  <- prof[cd, ] + rnorm(length(terms), 0, 0.8)
-    t <- t + round(runif(1, 40, 80))
     cata_rows[[length(cata_rows) + 1]] <- data.frame(
-      Timestamp = t, `Panelist ID` = p, `Sample code` = cd,
+      `Panelist ID` = p, `Sample code` = cd,
       `Which of these terms describe this sample?` = paste(terms[latent > 1.6], collapse = ", "),
       check.names = FALSE)
   }
@@ -446,9 +445,3 @@ data.frame(
 - Sorting is holistic: it shows what consumers see as the **main** differences. It is weak at fine differences within a group.
 - CATA is analytic: it can separate products on any listed term, but **only on terms you put in the list**. Check the "only spontaneous" vocabulary: those are attributes your CATA list missed.
 - A good practical recommendation is often to use sorting first, to discover the product space and vocabulary, then build the CATA list from the sorting words.
-
-**Questions to discuss in class**
-
-1. Why can't we simply average the group numbers across panelists?
-2. What does it mean if one panelist puts all chips of the same base (tempe, cassava…) together while another groups by flavour (spicy, cheesy…)? How does MCA deal with this?
-3. *Extension:* in **free multiple sorting** panelists sort the same samples several times using different criteria. How would you add this to the Google Form (hint: repeat the grid question)?

@@ -1,7 +1,7 @@
 ---
 title: "Project 4 — JAR vs. CATA with an ideal product for iced tea reformulation"
 subtitle: "Analysis plan (draft) with dummy data"
-author: "Sensory Practicum"
+author: "AWP"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -89,18 +89,20 @@ CATA terms: Sweet, Syrupy, Bitter, Astringent, Strong tea flavour, Watery, Refre
 
 # What the exported .xlsx looks like
 
+*Google Forms always adds a **Timestamp** column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).*
+
 **Form A**
 
-| Timestamp | Panelist ID | Sample code | How much do you like…? | How is the … of this sample? [Sweetness] | … [Tea flavour] | … [Bitterness] |
-|---|---|---|---|---|---|---|
-| 2026-11-05 09:03:12 | 1 | 274 | 6 | 4 Somewhat too high | 3 Just about right | 3 Just about right |
+| Panelist ID | Sample code | How much do you like…? | How is the … of this sample? [Sweetness] | … [Tea flavour] | … [Bitterness] |
+|---|---|---|---|---|---|
+| 1 | 274 | 6 | 4 Somewhat too high | 3 Just about right | 3 Just about right |
 
 **Form B**
 
-| Timestamp | Panelist ID | Sample code | How much do you like…? | Which of these terms describe this sample? |
-|---|---|---|---|---|
-| 2026-11-05 09:03:40 | 101 | 274 | 7 | Sweet, Refreshing, Fresh tea aroma |
-| 2026-11-05 09:12:02 | 101 | IDEAL | *(blank)* | Sweet, Refreshing, Strong tea flavour |
+| Panelist ID | Sample code | How much do you like…? | Which of these terms describe this sample? |
+|---|---|---|---|
+| 101 | 274 | 7 | Sweet, Refreshing, Fresh tea aroma |
+| 101 | IDEAL | *(blank)* | Sweet, Refreshing, Strong tea flavour |
 
 # Dummy data
 
@@ -116,7 +118,6 @@ terms <- c("Sweet","Syrupy","Bitter","Astringent","Strong tea flavour","Watery",
            "Refreshing","Floral","Smoky","Sour","Lingering aftertaste","Fresh tea aroma")
 jar_lab <- c("1 Much too low","2 Somewhat too low","3 Just about right",
              "4 Somewhat too high","5 Much too high")
-start <- as.POSIXct("2026-11-05 09:00:00", tz = "Asia/Jakarta")
 
 consumer <- function() list(sug = rnorm(1, 2.0, 0.6), str = rnorm(1, 1.5, 0.4),
                             bit = rnorm(1, 0.6, 0.3))
@@ -133,11 +134,11 @@ jar  <- function(x, ideal, k) pmin(5, pmax(1, round(3 + k * (x - ideal) + rnorm(
 # ---- Form A: liking + JAR ----
 rowsA <- list()
 for (i in 1:60) {
-  c <- consumer(); t <- start + i * 400
+  c <- consumer()
   for (j in sample(nrow(prods))) {
-    p <- perceive(prods[j, ]); t <- t + round(runif(1, 45, 90))
+    p <- perceive(prods[j, ])
     rowsA[[length(rowsA) + 1]] <- data.frame(
-      Timestamp = t, `Panelist ID` = i, `Sample code` = prods$code[j],
+      `Panelist ID` = i, `Sample code` = prods$code[j],
       `How much do you like this iced tea overall?` = like(c, p),
       `How is the ... of this sample? [Sweetness]`   = jar_lab[jar(p$sug, c$sug, 1.0)],
       `How is the ... of this sample? [Tea flavour]` = jar_lab[jar(p$str, c$str, 1.2)],
@@ -150,16 +151,16 @@ formA <- bind_rows(rowsA)
 # ---- Form B: liking + CATA + ideal ----
 rowsB <- list()
 for (i in 101:160) {
-  c <- consumer(); t <- start + (i - 100) * 400
+  c <- consumer()
   for (j in sample(nrow(prods))) {
-    p <- perceive(prods[j, ]); t <- t + round(runif(1, 40, 80))
+    p <- perceive(prods[j, ])
     L <- like(c, p)
     ticked <- terms[c(p$sug > 1.5, p$sug > 2.6, p$bit > 0.9, p$str > 1.6 & runif(1) < .5,
                       p$str > 1.5, p$str < 1.3 & p$sug < 1.6,
                       L >= 6 & runif(1) < .8, runif(1) < .2, runif(1) < .05,
                       runif(1) < .08, p$bit > 1.1 & runif(1) < .6, runif(1) < .3)]
     rowsB[[length(rowsB) + 1]] <- data.frame(
-      Timestamp = t, `Panelist ID` = i, `Sample code` = prods$code[j],
+      `Panelist ID` = i, `Sample code` = prods$code[j],
       `How much do you like this iced tea overall?` = L,
       `Which of these terms describe this sample?` = paste(ticked, collapse = ", "),
       check.names = FALSE)
@@ -168,7 +169,7 @@ for (i in 101:160) {
                    c$str > 1.6, runif(1) < .03, runif(1) < .9, runif(1) < .35,
                    runif(1) < .05, runif(1) < .05, runif(1) < .1, runif(1) < .3)]
   rowsB[[length(rowsB) + 1]] <- data.frame(
-    Timestamp = t + 60, `Panelist ID` = i, `Sample code` = "IDEAL",
+    `Panelist ID` = i, `Sample code` = "IDEAL",
     `How much do you like this iced tea overall?` = NA,
     `Which of these terms describe this sample?` = paste(ideal, collapse = ", "),
     check.names = FALSE)
@@ -406,9 +407,3 @@ data.frame(
 - **CATA + ideal** covers more attributes and can reveal unexpected drivers (here, *Refreshing*). But the direction of change must be inferred: "Syrupy is present but should not be" means "reduce sugar", which requires product knowledge to translate.
 - Where the methods disagree, look at the % of consumers affected: small groups (< 20%) are not a reason to reformulate.
 - In practice the two are complementary: CATA + ideal to discover which attributes matter, JAR to fine-tune the level of the few key attributes.
-
-**Questions to discuss in class**
-
-1. Why do we require at least 20% of consumers *and* a mean drop of at least 1 point before calling a problem actionable?
-2. A sample has 30% "too sweet" and 30% "not sweet enough". What does this mean, and should you change the sugar level?
-3. Why is a between-subjects design used here, when Projects 2 and 3 use within-subjects designs?

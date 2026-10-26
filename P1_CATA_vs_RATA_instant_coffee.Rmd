@@ -1,7 +1,7 @@
 ---
 title: "Project 1 — CATA vs. RATA on instant coffee"
 subtitle: "Analysis plan (draft) with dummy data"
-author: "Sensory Practicum"
+author: "AWP"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -27,13 +27,12 @@ library(FactoMineR)  # CA, PCA, coeffRV
 
 # Research question
 
-**Does adding intensity ratings (RATA) improve product discrimination enough to justify the extra panelist effort compared with plain CATA?**
+**Does adding intensity ratings (RATA) improve product discrimination compared with plain CATA?**
 
 Sub-questions that each group must answer:
 
 1. Do CATA and RATA produce a similar sensory map of the products? (RV coefficient)
 2. Which method discriminates more attributes / more product pairs?
-3. Which method takes longer to complete?
 
 **Design.** Between-subjects: two independent groups of untrained consumers.
 Group A uses CATA, Group B uses RATA. 8 instant coffees, 12 attributes, ~50 consumers per method.
@@ -78,24 +77,24 @@ Make **two forms** (one per method). In both forms, the panelist submits **one r
 
 Attribute list (both forms): Bitter, Sweet, Milky, Roasted, Burnt, Caramel, Chocolate, Sour, Watery, Strong, Creamy, Artificial.
 
-**Timing.** Google Forms records a *Timestamp* for each response. Time per panelist = last timestamp − first timestamp (an approximation, but fine for comparing methods).
-
 # What the exported .xlsx looks like
+
+*Google Forms always adds a **Timestamp** column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).*
 
 In Google Forms: *Responses → Link to Sheets → File → Download → Microsoft Excel (.xlsx)*.
 
 **CATA export** — checkbox answers arrive as one comma-separated cell:
 
-| Timestamp | Panelist ID | Sample code | Which of these terms describe this sample? |
-|---|---|---|---|
-| 2026-11-02 09:01:12 | 1 | 482 | Bitter, Roasted, Strong |
-| 2026-11-02 09:02:05 | 1 | 735 | Sweet, Milky, Creamy |
+| Panelist ID | Sample code | Which of these terms describe this sample? |
+|---|---|---|
+| 1 | 482 | Bitter, Roasted, Strong |
+| 1 | 735 | Sweet, Milky, Creamy |
 
 **RATA export** — a grid becomes one column per row of the grid, named `Question [Attribute]`:
 
-| Timestamp | Panelist ID | Sample code | Rate the intensity… [Bitter] | Rate the intensity… [Sweet] | … |
-|---|---|---|---|---|---|
-| 2026-11-02 09:01:40 | 101 | 482 | 3 High | Not applicable | … |
+| Panelist ID | Sample code | Rate the intensity… [Bitter] | Rate the intensity… [Sweet] | … |
+|---|---|---|---|---|
+| 101 | 482 | 3 High | Not applicable | … |
 
 # Dummy data
 
@@ -121,18 +120,14 @@ true_prof <- rbind(
   Coffee_H = c(1,3,3,1,0,2,1,0,0,1,3,1))   # near-duplicate of C (discrimination test)
 colnames(true_prof) <- attrs
 
-start <- as.POSIXct("2026-11-02 09:00:00", tz = "Asia/Jakarta")
-
 # ---- CATA: 50 panelists ----
 cata_rows <- list()
 for (p in 1:50) {
-  t <- start + (p - 1) * 900
   for (prod in sample(names(codes))) {
     latent  <- true_prof[prod, ] + rnorm(length(attrs), 0, 0.8)
     checked <- attrs[latent > 1.6]
-    t <- t + round(runif(1, 40, 80))               # ~1 min per sample
     cata_rows[[length(cata_rows) + 1]] <- data.frame(
-      Timestamp = t, `Panelist ID` = p, `Sample code` = codes[[prod]],
+      `Panelist ID` = p, `Sample code` = codes[[prod]],
       `Which of these terms describe this sample?` = paste(checked, collapse = ", "),
       check.names = FALSE)
   }
@@ -143,13 +138,10 @@ cata_raw <- bind_rows(cata_rows)
 lab <- c("Not applicable", "1 Low", "2 Medium", "3 High")
 rata_rows <- list()
 for (p in 101:150) {
-  t <- start + (p - 101) * 900
   for (prod in sample(names(codes))) {
     latent <- true_prof[prod, ] + rnorm(length(attrs), 0, 0.8)
     score  <- ifelse(latent > 1.6, pmin(3, pmax(1, round(latent - 0.4))), 0)
-    t <- t + round(runif(1, 70, 130))              # RATA is slower
-    row <- data.frame(Timestamp = t, `Panelist ID` = p,
-                      `Sample code` = codes[[prod]], check.names = FALSE)
+    row <- data.frame(`Panelist ID` = p, `Sample code` = codes[[prod]], check.names = FALSE)
     for (a in seq_along(attrs))
       row[[paste0("Rate the intensity of each term that applies [", attrs[a], "]")]] <-
         lab[score[a] + 1]
@@ -319,21 +311,6 @@ data.frame(attribute = attrs,
 
 Look in particular at the near-duplicate pair **`r codes["Coffee_C"]`** vs. **`r codes["Coffee_H"]`**: neither method should separate them strongly. If one method does, it may be picking up noise.
 
-### Completion time
-
-```{r timing}
-dur <- function(df) df %>% group_by(`Panelist ID`) %>%
-  summarise(minutes = as.numeric(difftime(max(Timestamp), min(Timestamp), units = "mins")))
-timing <- bind_rows(mutate(dur(cata_raw), method = "CATA"),
-                    mutate(dur(rata_raw), method = "RATA"))
-timing %>% group_by(method) %>% summarise(mean_min = mean(minutes), sd = sd(minutes))
-t.test(minutes ~ method, data = timing)   # independent groups (between-subjects design)
-
-ggplot(timing, aes(method, minutes)) + geom_boxplot() + geom_jitter(width = .1, alpha = .4) +
-  labs(title = "Time to evaluate all 8 samples", y = "Minutes (first to last submission)") +
-  theme_minimal()
-```
-
 ### Summary table for the poster
 
 ```{r summary-table}
@@ -341,17 +318,14 @@ data.frame(
   Criterion = c("Discriminating attributes (p < 0.05)",
                 "Variance explained, Dim 1 + 2 (%)",
                 "Discriminated product pairs (sum over attributes)",
-                "Mean completion time (min)",
                 "RV between maps (p-value)"),
   CATA = c(length(sig_cata),
            round(ca_cata$eig[2, 3], 1),
            sum(cata_pairs),
-           round(mean(timing$minutes[timing$method == "CATA"]), 1),
            sprintf("%.2f (p = %.3f)", rv$rv, rv$p.value)),
   RATA = c(length(sig_rata),
            round(pca_rata$eig[2, 3], 1),
            sum(rata_aov$pairs_diff),
-           round(mean(timing$minutes[timing$method == "RATA"]), 1),
            ""))
 ```
 
@@ -361,16 +335,10 @@ data.frame(
 
 - CATA found `r length(sig_cata)` of 12 attributes discriminating; RATA found `r length(sig_rata)`. Attributes that are significant only in RATA are the ones where products differ in *how much*, not *whether*, the attribute is present (e.g., two black coffees that are both bitter, but one more so).
 - The RV coefficient between the CATA and RATA maps is `r round(rv$rv, 2)` (p = `r format.pval(rv$p.value, digits = 2, eps = 0.001)`). A high, significant RV means both methods tell the **same story** about how the coffees relate to each other.
-- RATA took longer on average (`r round(mean(timing$minutes[timing$method=="RATA"]),1)` vs `r round(mean(timing$minutes[timing$method=="CATA"]),1)` min).
 
-**How to write the conclusion.** Weigh the gain against the cost:
+**How to write the conclusion.** Weigh the extra information against the more demanding task:
 
-- If RV is high **and** RATA adds few extra discriminating attributes or pairs, CATA is sufficient and quicker.
-- If RATA separates products that CATA cannot (e.g., the two black coffees), the extra time is justified when the product set contains products that are similar in composition.
+- If RV is high **and** RATA adds few extra discriminating attributes or pairs, CATA is sufficient and simpler for consumers.
+- If RATA separates products that CATA cannot (e.g., the two black coffees), the more demanding task is worth it when the product set contains products that are similar in composition.
 - Discuss the design limitation: between-subjects means panel differences are confounded with method differences. A within-subjects replication (same panelists, both methods, counterbalanced) would remove this.
 
-**Questions to discuss in class**
-
-1. Why is *Not applicable* scored as 0 in RATA rather than treated as missing? What happens to the analysis if you treat it as missing instead?
-2. Why do we run CA on CATA counts but PCA on RATA means?
-3. Would the conclusion change with 25 panelists instead of 50? (Try it: subsample the data.)

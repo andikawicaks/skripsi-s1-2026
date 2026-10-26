@@ -1,7 +1,7 @@
 ---
 title: "Project 2 — Napping vs. Polarized Sensory Positioning (PSP) on ready-to-drink teas"
 subtitle: "Analysis plan (draft) with dummy data"
-author: "Sensory Practicum"
+author: "AWP"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -33,7 +33,7 @@ Sub-questions:
 
 1. How similar are the Napping and PSP maps? (RV coefficient)
 2. Can panelists recognise a pole when it is served blind? (validity check for PSP)
-3. Which method do consumers find easier, and which takes longer?
+3. Which method do consumers find easier?
 
 **Design.** Within-subjects: the same ~40 untrained consumers do both methods, in counterbalanced order (half Napping first, half PSP first), with a break in between.
 10 ready-to-drink teas, 3-digit codes. For PSP, 3 of the 10 teas are served as **labelled poles** (Pole A, B, C); all 10 teas, including the 3 pole teas, are also served **blind** as test samples.
@@ -88,17 +88,19 @@ Add a final section (or a 1-question form) for *How easy was the PSP task?* (1-7
 
 # What the exported .xlsx looks like
 
+*Google Forms always adds a **Timestamp** column as the first column. It is not used in this analysis, so you can delete it or simply ignore it (the code selects columns by name).*
+
 **Napping** — wide: one row per panelist.
 
-| Timestamp | Panelist ID | Order | Sample 274 - X (cm) | Sample 274 - Y (cm) | … | Sample 274 - words | … | How easy was this task? |
-|---|---|---|---|---|---|---|---|---|
-| 2026-11-03 10:12:40 | 1 | Napping first | 31.5 | 8.0 | … | Manis, sugary dan enak | … | 5 |
+| Panelist ID | Order | Sample 274 - X (cm) | Sample 274 - Y (cm) | … | Sample 274 - words | … | How easy was this task? |
+|---|---|---|---|---|---|---|---|
+| 1 | Napping first | 31.5 | 8.0 | … | Manis, sugary dan enak | … | 5 |
 
 **PSP** — long: one row per panelist × sample.
 
-| Timestamp | Panelist ID | Sample code | How different … Pole A? | … Pole B? | … Pole C? |
-|---|---|---|---|---|---|
-| 2026-11-03 10:40:11 | 1 | 274 | 2 | 7 | 9 |
+| Panelist ID | Sample code | How different … Pole A? | … Pole B? | … Pole C? |
+|---|---|---|---|---|
+| 1 | 274 | 2 | 7 | 9 |
 
 # Dummy data
 
@@ -139,7 +141,6 @@ describe <- function(type) {
 }
 poles <- c(A = "274", B = "605", C = "721")   # one tea from each cluster serves as a pole
 
-start <- as.POSIXct("2026-11-03 10:00:00", tz = "Asia/Jakarta")
 n_pan <- 40
 
 # ---- Napping ----
@@ -150,8 +151,7 @@ napping_raw <- bind_rows(lapply(1:n_pan, function(p) {
   xy[, 1] <- 21   + xy[, 1] * runif(1, 4, 6)       # each panelist uses the sheet differently
   xy[, 2] <- 14.8 + xy[, 2] * runif(1, 2.5, 4.5)
   xy[, 1] <- pmin(pmax(xy[, 1], 0.5), 41.5); xy[, 2] <- pmin(pmax(xy[, 2], 0.5), 29)
-  row <- data.frame(Timestamp = start + p * 600 + round(runif(1, 300, 600)),
-                    `Panelist ID` = p,
+  row <- data.frame(`Panelist ID` = p,
                     Order = ifelse(p %% 2 == 1, "Napping first", "PSP first"),
                     check.names = FALSE)
   for (i in 1:10) {
@@ -169,13 +169,11 @@ napping_raw <- bind_rows(lapply(1:n_pan, function(p) {
 truexy <- as.matrix(teas[, c("x","y")]); rownames(truexy) <- teas$code
 psp_rows <- list()
 for (p in 1:n_pan) {
-  t <- start + p * 600 + 1800
   for (cd in sample(teas$code)) {
     d <- sapply(poles, function(pl) sqrt(sum((truexy[cd, ] - truexy[pl, ])^2)))
     r <- pmin(10, pmax(0, round(d * 1.6 + rnorm(3, 0, 1.2))))
-    t <- t + round(runif(1, 30, 60))
     psp_rows[[length(psp_rows) + 1]] <- data.frame(
-      Timestamp = t, `Panelist ID` = p, `Sample code` = cd,
+      `Panelist ID` = p, `Sample code` = cd,
       `How different is this sample from Pole A?` = r[1],
       `How different is this sample from Pole B?` = r[2],
       `How different is this sample from Pole C?` = r[3], check.names = FALSE)
@@ -384,7 +382,7 @@ ggplot(df) +
        colour = NULL) + theme_minimal()
 ```
 
-### Ease and time
+### Ease
 
 ```{r ease}
 ease <- napping_raw %>% select(panelist = `Panelist ID`, Napping = `How easy was this task?`) %>%
@@ -393,12 +391,7 @@ ease <- napping_raw %>% select(panelist = `Panelist ID`, Napping = `How easy was
 summary(ease[, c("Napping", "PSP")])
 wilcox.test(ease$Napping, ease$PSP, paired = TRUE)    # same panelists -> paired test
 
-psp_time <- psp_raw %>% group_by(`Panelist ID`) %>%
-  summarise(PSP_min = as.numeric(difftime(max(Timestamp), min(Timestamp), units = "mins")))
-summary(psp_time$PSP_min)
 ```
-
-For Napping there is only one submission per panelist, so the form cannot time it. **Write the start time on each panelist's sheet** (or add a "start time" short-answer question) if you want to compare durations.
 
 ### Summary table for the poster
 
@@ -430,8 +423,3 @@ data.frame(
 - Low RV → look at which teas move. PSP can only "see" differences that relate to the 3 poles. A tea that is different from all three poles in a new way (e.g., smoky) will be poorly placed. That is the main limitation of PSP: **the choice of poles determines what can be detected.**
 - Discuss order effects (Napping first vs. PSP first) using the *Order* column.
 
-**Questions to discuss in class**
-
-1. Why is `type = "c"` (not scaled) used in the Napping MFA rather than `"s"` (scaled)?
-2. How would you choose the 3 poles before you know what the product space looks like?
-3. What would happen to the PSP map if two poles were very similar to each other?
